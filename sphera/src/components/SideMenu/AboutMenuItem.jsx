@@ -42,21 +42,12 @@ export default function AboutMenuItem(props) {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
             <ListItemText primary="Biography" />
           </ListItem>
           <ListItem button className={classes.nested}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
             <ListItemText primary="Personal projects" />
           </ListItem>
           <ListItem button className={classes.nested}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
             <ListItemText primary="Recommended resources" />
           </ListItem>
         </List>

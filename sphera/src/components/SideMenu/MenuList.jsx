@@ -10,8 +10,8 @@ import AboutMenuItem from "./AboutMenuItem";
 import ResourcesMenuItem from "./ResourcesMenuItem";
 import FooterList from "./Footer/FooterList";
 import Header from "./Header/Header";
-import Box from '@material-ui/core/Box';
 import CoursesIcon from "../Icons/CoursesIcon";
+import PublicationsIcon from "../Icons/PublicationsIcon";
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -32,6 +32,13 @@ export default function MenuList() {
   const classes = useStyles();
   const colorNotClicked = "#828282";
   const colorClicked = "#5A67D8";
+
+  function styleClickedItem(event){
+    const menuItem = event.target.getAttribute('name');
+
+  }
+
+
   return (
     <div>
       <List
@@ -43,15 +50,16 @@ export default function MenuList() {
         fullName = "Theodore (Teddy) Lazebnik" />
         <Divider light />
         <div className={classes.mainMenu}>
-        <AboutMenuItem />
-        <ListItem button>
+        <AboutMenuItem name="about" />
+        <ListItem name="publications" button onClick={styleClickedItem}>
           <ListItemIcon>
-            <RadioButtonUnchecked />
+            <PublicationsIcon
+              color={colorNotClicked}/>
           </ListItemIcon>
           <ListItemText primary="Publications" />
         </ListItem>
-        <ResourcesMenuItem />
-        <ListItem button>
+        <ResourcesMenuItem name="resources" />
+        <ListItem name="courses" button>
           <ListItemIcon>
             <CoursesIcon
             color={colorNotClicked} />
