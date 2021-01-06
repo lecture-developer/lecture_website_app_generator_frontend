@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import SideMenu from "./components/SideMenu/SideMenu";
 import PublicationsRoot from "./components/Publications/Root";
+import Navbar from './components/Navbar/Navbar';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,12 +32,14 @@ export default function App() {
       <CssBaseline />
       {/* replace with nadavs code */}
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
+          <Navbar />
+          {/* <Toolbar>
           <Typography variant="h6" noWrap>
             Clipped drawer
           </Typography>
-        </Toolbar>
+        </Toolbar> */}
       </AppBar>
+
       <SideMenu />
       <main className={classes.content}>
       {/* toolbar pushes the contents so it wont be hidden by the navbar */}
