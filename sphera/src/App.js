@@ -31,14 +31,15 @@ export default function App() {
     <div className={classes.root}>
       <CssBaseline />
       {/* replace with nadavs code */}
-      {/* <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
+      <AppBar position="fixed" className={classes.appBar}>
+          <Navbar />
+          {/* <Toolbar>
           <Typography variant="h6" noWrap>
             Clipped drawer
           </Typography>
-        </Toolbar>
-      </AppBar> */}
-      <Navbar />
+        </Toolbar> */}
+      </AppBar>
+
       <SideMenu />
       <main className={classes.content}>
       {/* toolbar pushes the contents so it wont be hidden by the navbar */}
