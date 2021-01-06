@@ -1,0 +1,12 @@
+.SearchBar {
+    border: 0px;
+    background-color: #F1F3F5;
+}
+
+.SearchBar::placeholder {
+    color: #2D3748;
+}
+
+.MainBlack {
+    color: #2D3748;
+}

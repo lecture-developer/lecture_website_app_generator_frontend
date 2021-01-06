@@ -1,0 +1,8 @@
+.NavBar {
+    height: 3.75rem;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid transparent;
+    background-color: white;
+}
+
