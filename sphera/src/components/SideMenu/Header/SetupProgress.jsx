@@ -16,22 +16,24 @@ const useStyles = makeStyles((theme) => ({
   },
   bar:{
     height: '6px',
-    color: '#5A67D8',
     margin: 0,
     backgroundColor: '#E2E8F0'
   },
+    barColor: {
+        backgroundColor: props => props.progress === 100 ? "#82EC86" : '#5A67D8',
+    }
 }));
 
 function SetupProgress(props){
-  const classes = useStyles();
+  const classes = useStyles(props);
   const [progress, setProgress] = useState(props.progress);
   const [percantage, setPercantage] = useState(props.steps);
 
   return (
     <div className={classes.root}>
       <p>Site setup</p>
-      <LinearProgress className={classes.bar} variant="determinate" value={progress} />
-      <p>{percantage}/4 completed</p>
+      <LinearProgress classes={{barColorPrimary: classes.barColor}} className={classes.bar} variant="determinate" value={progress} />
+      <p>{percantage === 4 ? "Completed!" : percantage+"/4 completed"}</p>
     </div>
 );
 
