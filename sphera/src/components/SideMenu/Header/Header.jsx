@@ -30,7 +30,7 @@ function Header(props){
 
   const classes = useStyles();
   const greeting = getGreeting();
-  const [progress, setProgress] = useState(25);
+  const [progress, setProgress] = useState(75);
 
   function getGreeting(){
     let hours = new Date().getHours();
