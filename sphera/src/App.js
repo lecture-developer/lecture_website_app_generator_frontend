@@ -10,6 +10,7 @@ import Divider from '@material-ui/core/Divider';
 import SideMenu from "./components/SideMenu/SideMenu";
 import PublicationsRoot from "./components/Publications/Root";
 import Navbar from './components/Navbar/Navbar';
+import ContentTable from './components/Table/Table';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,11 +34,6 @@ export default function App() {
       {/* replace with nadavs code */}
       <AppBar position="fixed" className={classes.appBar}>
           <Navbar />
-          {/* <Toolbar>
-          <Typography variant="h6" noWrap>
-            Clipped drawer
-          </Typography>
-        </Toolbar> */}
       </AppBar>
 
       <SideMenu />
@@ -46,6 +42,7 @@ export default function App() {
         <Toolbar />
       {/*insert main window - publications etc */}
       <PublicationsRoot />
+      <ContentTable />
       </main>
     </div>
   );
