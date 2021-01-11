@@ -42,7 +42,6 @@ export default function App() {
         <Toolbar />
       {/*insert main window - publications etc */}
       <PublicationsRoot />
-      <ContentTable />
       </main>
     </div>
   );

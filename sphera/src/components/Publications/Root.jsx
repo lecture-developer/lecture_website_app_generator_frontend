@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
 import PublicationsHeader from "./PublicationsHeader";
 import Filters from "./Filters";
+import ContentTable from "../Table/Table";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,6 +21,7 @@ function PublicationsRoot(){
     <PublicationsHeader
     publicationsAmount = "12"/>
     <Filters/>
+    <ContentTable />
     </div>
   );
 

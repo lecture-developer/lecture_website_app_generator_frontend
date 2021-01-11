@@ -18,9 +18,10 @@ const useStyles = makeStyles({
         overflow: 'auto'
     },
     tableContainer: {
-        marginRight: '4rem',
-        marginLeft: '4rem',
-        maxWidth: '90%',
+        // marginRight: '4rem',
+        // marginLeft: '4rem',
+        // maxWidth: '90%',
+        marginTop: '2rem',
         maxHeight: '450px'
     },
     row: {
@@ -45,7 +46,7 @@ const useStyles = makeStyles({
         background: 'linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(247,247,247,1) 75%,rgba(244,244,244,1) 100%)', /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: 'progid:DXImageTransform.Microsoft.gradient( startColorstr="#00ffffff", endColorstr="#f4f4f4",GradientType=0 )', /* IE6-9 */
         width: '100%',
-        height: '20px',
+        height: '25px',
         position: 'sticky',
         bottom: 0,
         left: 0
@@ -113,7 +114,7 @@ function ContentTable() {
                     })}
                 </TableBody>
             </Table>
-            <div className={classes.fader}></div>
+            <div className={classes.fader}/>
         </TableContainer>
     )
 }
