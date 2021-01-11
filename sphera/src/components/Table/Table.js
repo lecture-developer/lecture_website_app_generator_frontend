@@ -18,9 +18,6 @@ const useStyles = makeStyles({
         overflow: 'auto'
     },
     tableContainer: {
-        // marginRight: '4rem',
-        // marginLeft: '4rem',
-        // maxWidth: '90%',
         marginTop: '2rem',
         maxHeight: '450px'
     },
@@ -35,6 +32,9 @@ const useStyles = makeStyles({
         color: '#828282',
         fontSize: '1rem',
         fontWeight: '400'
+    },
+    mainBlack: {
+        color: '#2D3748'
     },
     relative: {
         position: 'relative'
@@ -53,31 +53,7 @@ const useStyles = makeStyles({
     }
 });
 
-
-function createData(publicationName, authors, lastEdit) {
-    return { publicationName, authors, lastEdit };
-}
-
-const rows = [
-    createData('A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm for numerical matrix exponent max max max..', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm for numerical matrix exponent_23ed', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm for numerical matrix exponent max max max..', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm for numerical matrix exponent_23ed', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm for numerical matrix exponent max max max..', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm for numerical matrix exponent_23ed', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm for numerical matrix exponent max max max..', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-    createData('A stable algorithm for numerical matrix exponent_23ed', 'You and Shlomo Y..', '22/2/20  |  22:38'),
-];
-
-function ContentTable() {
+function ContentTable(props) {
     const classes = useStyles();
 
     return (
@@ -95,9 +71,9 @@ function ContentTable() {
                 </TableHead>
                 {/* the content of the table*/}
                 <TableBody>
-                    {rows.map((row) => {
+                    {props.rows.map((row) => {
                         return <TableRow key={row.publicationName} className={classes.row}>
-                            <TableCell align="left" className={classes.text}>{row.publicationName}</TableCell>
+                            <TableCell align="left" className={`${classes.text} ${classes.mainBlack}`}>{row.publicationName}</TableCell>
                             <TableCell align="left" className={classes.text}>{row.authors}</TableCell>
                             <TableCell align="left" className={classes.text}>{row.lastEdit}</TableCell>
                             <TableCell align="left" className={classes.text}>
