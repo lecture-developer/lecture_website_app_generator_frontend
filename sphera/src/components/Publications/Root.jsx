@@ -44,7 +44,7 @@ function PublicationsRoot(){
   return (
     <div className ={classes.root}>
     <PublicationsHeader
-    publicationsAmount = "12"/>
+    publicationsAmount="12" publicationsBtn={rows.length !== 0 ? true : false}/>
     <Filters/>
     {rows.length !== 0 ? <ContentTable rows={rows}/> : <EmptyTable/>}
     </div>
