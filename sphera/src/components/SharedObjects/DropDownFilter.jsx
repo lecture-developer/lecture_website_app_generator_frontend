@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import Select from 'react-select';
+import Select, { components } from 'react-select';
 import {makeStyles} from "@material-ui/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -36,8 +36,9 @@ function DropDownFilter(props){
         <div className={classes.container}>
         <Select
             styles={selectStyles}
-            isClearable={true}
+            isClearable={false}
             value={filter}
+            placeholder={props.placeholder}
             onChange={handleChange}
             options = {props.options} />
             {console.log(filter)}
