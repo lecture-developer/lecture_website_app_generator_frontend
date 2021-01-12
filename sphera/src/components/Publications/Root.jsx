@@ -5,6 +5,7 @@ import PublicationsHeader from "./PublicationsHeader";
 import Filters from "./Filters";
 import ContentTable from "../Table/Table";
 import EmptyTable from "../Table/EmptyTable";
+import noPublicationsImg from '../../img/no_publication.png';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,7 +47,7 @@ function PublicationsRoot(){
     <PublicationsHeader
     publicationsAmount="12" publicationsBtn={rows.length !== 0 ? true : false}/>
     <Filters/>
-    {rows.length !== 0 ? <ContentTable rows={rows}/> : <EmptyTable/>}
+    {rows.length !== 0 ? <ContentTable rows={rows}/> : <EmptyTable img={noPublicationsImg}/>}
     </div>
   );
 
