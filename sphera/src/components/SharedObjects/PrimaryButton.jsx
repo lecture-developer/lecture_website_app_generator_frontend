@@ -11,7 +11,11 @@ const PrimaryBtn = withStyles((theme) => ({
         '&:hover': {
             backgroundColor: "#7F9CF5",
         },
-    },
+        fontWeight: '400',
+        fontSize: '0.75rem',
+        paddingTop: '0.75rem',
+        paddingBottom: '0.75rem'
+    }
 }))(Button);
 
 function PrimaryButton(props){

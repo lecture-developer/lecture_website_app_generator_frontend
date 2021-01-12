@@ -47,9 +47,9 @@ return(
       <h1>Publications</h1>
       <p>({props.publicationsAmount})</p>
     </Grid>
-    <Grid item>
+    {props.publicationsBtn ? <Grid item>
       <PrimaryButton text = {"New publication"} />
-    </Grid>
+    </Grid> : null}
   </Grid>
   </div>
 );
