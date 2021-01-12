@@ -1,12 +1,27 @@
 import React, {useState} from "react";
 import {makeStyles} from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import DropDownFilter from "../SharedObjects/DropDownFilter";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
+import FormGroup from '@material-ui/core/FormGroup';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
-        flexGrow: 1
-    }
+        flexGrow: 1,
+        marginTop: '2rem'
+    },
+    formControl: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+    },
+    label: {
+        fontFamily: "Roboto",
+        fontSize: "14px",
+        lineHeight: "16px",
+        color: "#828282",
+    },
 }));
 
 const typeFilterExample = [
@@ -20,14 +35,16 @@ function Filters(props){
     const classes = useStyles();
     return (
     <div className = {classes.root}>
-        <Grid
-            container
-            xs="12"
-            direction="row"
-            justify="space-between"
-            alignItems="center">
-            <DropDownFilter options ={ typeFilterExample}/>
-        </Grid>
+        <FormControl className={classes.formControl}>
+            <FormLabel className={classes.label}>Filter by:</FormLabel>
+            <FormLabel className={classes.label}>Sort by:</FormLabel>
+            <FormGroup className={classes.formGroup} row={true}>
+                <DropDownFilter options ={ typeFilterExample}/>
+                <DropDownFilter options ={ typeFilterExample}/>
+                <DropDownFilter options ={ typeFilterExample}/>
+                <DropDownFilter options ={ typeFilterExample}/>
+            </FormGroup>
+        </FormControl>
     </div>
     );
 }

@@ -9,7 +9,8 @@ import EmptyTable from "../Table/EmptyTable";
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
-    padding: "64px"
+    padding: "64px",
+    height: "90vh",
   }
 }));
 
@@ -39,7 +40,7 @@ let rows = [
 
 function PublicationsRoot(){
   const classes = useStyles();
-  rows = [];
+  // rows = [];
 
   return (
     <div className ={classes.root}>

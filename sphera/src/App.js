@@ -22,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
+      background: '#F5F8FC'
+
   },
 }));
 
@@ -31,7 +33,6 @@ export default function App() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {/* replace with nadavs code */}
       <AppBar position="fixed" className={classes.appBar}>
           <Navbar />
       </AppBar>
