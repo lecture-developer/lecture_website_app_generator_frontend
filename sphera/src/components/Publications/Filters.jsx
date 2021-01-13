@@ -8,12 +8,18 @@ import Grid from "@material-ui/core/Grid";
 import ViewMode from "./ViewMode";
 import {Divider} from "@material-ui/core";
 
-
+/***
+ * Filters row
+ * props:
+ *  3 lists with filter values {topics, types and years}
+ *  4 handler functions - one for each filter + for sorting
+ *
+ */
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
         marginTop: '3rem',
-        marginBottom: '2rem'
+        marginBottom: '2rem',
     },
     formControl: {
         display: "flex",
@@ -29,22 +35,40 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const typeFilterExample = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
+const sortFilter = [
+    { value: 'draftsFirst', label: 'Drafts first' },
+    { value: 'lastEdited', label: 'Last edited' },
 ];
+
+function createFilter(value){
+    return {
+        value: value,
+        label: value
+    }
+}
+function makeFiltersFromList(lst){
+    let filters = [];
+    lst.forEach(elem => {
+        filters=[...filters,createFilter(elem)];
+    });
+    return filters;
+}
 
 function Filters(props){
 
     const classes = useStyles();
+    const topic = makeFiltersFromList(props.topics);
+    const type = makeFiltersFromList(props.types);
+    const year = makeFiltersFromList(props.years);
+
     return (
     <div className = {classes.root}>
         <Grid
             container
             justify="space-between"
             direction="row"
-            alignItems="flex-end">
+            alignItems="flex-end"
+            className="strike">
             <Grid item>
             <Grid
                 container
@@ -53,24 +77,28 @@ function Filters(props){
                 <Grid item>
                 <FormLabel className={classes.label}>Filter by</FormLabel>
                     <DropDownFilter
-                        options ={ typeFilterExample}
-                        placeholder={"Topic"}/>
+                        options ={topic}
+                        placeholder={"Topic"}
+                        filterContent={props.filterTopic}/>
                 </Grid>
                 <Grid item>
                     <DropDownFilter
-                        options ={ typeFilterExample}
-                        placeholder={"Type"}/>
+                        options ={type}
+                        placeholder={"Type"}
+                        filterContent={props.filterType}/>
                 </Grid>
                 <Grid item>
                     <DropDownFilter
-                        options ={ typeFilterExample}
-                        placeholder={"Year"}/>
+                        options ={year}
+                        placeholder={"Year"}
+                        filterContent={props.filterYear}/>
                 </Grid>
                 <Grid item>
                 <FormLabel className={classes.label}>Sort by</FormLabel>
                     <DropDownFilter
-                        options ={ typeFilterExample}
-                        placeholder={"Drafts first"}/>
+                        options ={sortFilter}
+                        placeholder={"Drafts first"}
+                        filterContent={props.sortContent}/>
                 </Grid>
             </Grid>
             </Grid>

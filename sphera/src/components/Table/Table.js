@@ -19,10 +19,11 @@ const useStyles = makeStyles({
     },
     tableContainer: {
         marginTop: '2rem',
-        maxHeight: '450px'
+        maxHeight: '53vh'
     },
     row: {
-        height: '2rem'
+        height: '2rem',
+        zIndex: "0",
     },
     headers: {
         backgroundColor: '#E2E8F0',

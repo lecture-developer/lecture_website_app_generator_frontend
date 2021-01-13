@@ -37,6 +37,10 @@ let rows = [
   createData('A stable algorithm for numerical matrix exponent_23ed', 'You and Shlomo Y..', '22/2/20  |  22:38'),
 ];
 
+let topics = ["algorithms","snow","music"];
+let types = ["paper","website","movie"];
+let years = [2015,2018,2020];
+
 
 function PublicationsRoot(){
   const classes = useStyles();
@@ -46,7 +50,10 @@ function PublicationsRoot(){
     <div className ={classes.root}>
     <PublicationsHeader
     publicationsAmount="12" publicationsBtn={rows.length !== 0 ? true : false}/>
-    <Filters/>
+    <Filters
+      topics={topics}
+      types={types}
+      years={years}/>
     {rows.length !== 0 ? <ContentTable rows={rows}/> : <EmptyTable/>}
     </div>
   );
