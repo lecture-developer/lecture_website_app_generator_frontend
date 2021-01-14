@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
   mainMenu: {
     marginTop: '10px',
     height: '55vh',
+  },
+  picked: {
+    borderLeft: "5px solid transparent",
+    borderImage: "url(/public/images/left_border.svg)",
   }
 }));
 
@@ -51,7 +55,7 @@ export default function MenuList() {
         <Divider light />
         <div className={classes.mainMenu}>
         <AboutMenuItem name="about" />
-        <ListItem name="publications" button onClick={styleClickedItem}>
+        <ListItem name="publications" className={classes.picked} button onClick={styleClickedItem}>
           <ListItemIcon>
             <PublicationsIcon
               color={colorNotClicked}/>
