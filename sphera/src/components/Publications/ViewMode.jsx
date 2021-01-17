@@ -29,9 +29,11 @@ function ViewMode(props){
 
     function handleClickList(){
         setActiveList(true);
+        props.displayList(true);
     }
     function handleClickGrid(){
         setActiveList(false);
+        props.displayList(false);
     }
 
     return (

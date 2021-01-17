@@ -103,7 +103,8 @@ function Filters(props){
             </Grid>
             </Grid>
             <Grid item align-items-flex-end>
-                <ViewMode />
+                <ViewMode
+                    displayList={props.displayList}/>
             </Grid>
         </Grid>
     </div>
