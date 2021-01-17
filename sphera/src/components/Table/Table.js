@@ -1,5 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,9 +9,18 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
 import CreateIcon from '@material-ui/icons/Create';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import LinkIcon from '@material-ui/icons/Link';
+import DeleteIcon from '@material-ui/icons/Delete';
+import UnpublishIcon from '../Icons/UnpublishIcon';
+
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
 import './Table.css';
 
 const useStyles = makeStyles({
@@ -51,23 +62,66 @@ const useStyles = makeStyles({
         position: 'sticky',
         bottom: 0,
         left: 0
+    },
+    icon: {
+        color: '#828282',
+        marginRight: '0.5rem'
     }
 });
 
+const StyledMenu = withStyles({
+    paper: {
+      border: '1px solid #d3d4d5',
+      backgroundColor: '#F1F3F5'
+    },
+  })((props) => (
+    <Menu
+      elevation={0}
+      getContentAnchorEl={null}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'left',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      {...props}
+    />
+  ));
+
+  const StyledMenuItem = withStyles((theme) => ({
+    root: {
+        '&:focus': {
+            backgroundColor: theme.palette.primary.main,
+            '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+            color: theme.palette.common.white,
+        },
+      },
+    },
+  }))(MenuItem);
+
 function ContentTable(props) {
     const classes = useStyles();
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleCloseMenu = () => {
+        setAnchorEl(null);
+    };
+
+    const handleClickMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
 
     return (
         <TableContainer className={`${classes.tableContainer} ${classes.relative}`} component={Paper}>
-            <Table stickyHeader className={`${classes.table} ${classes.relative}`} size="small"  aria-label="simple table">
+            <Table stickyHeader className={`${classes.table} ${classes.relative}`} size="small" aria-label="simple table">
                 {/* the titles of the table*/}
                 <TableHead>
                     <TableRow className={classes.row}>
-                        <TableCell className={classes.headers}>Pubication Name</TableCell>
-                        <TableCell align="left" className={classes.headers}>Authors</TableCell>
-                        <TableCell align="left" className={classes.headers}>Last Edited</TableCell>
-                        <TableCell align="right" className={classes.headers}></TableCell>
-                        <TableCell align="right" className={classes.headers}></TableCell>
+                        {props.headers.map(header => {
+                            return <TableCell align="left" className={classes.headers}>{header}</TableCell>
+                        })}
                     </TableRow>
                 </TableHead>
                 {/* the content of the table*/}
@@ -79,19 +133,31 @@ function ContentTable(props) {
                             <TableCell align="left" className={classes.text}>{row.lastEdit}</TableCell>
                             <TableCell align="left" className={classes.text}>
                                 <IconButton>
-                                    <CreateIcon className={classes.clickable} />
+                                    <CreateIcon />
                                 </IconButton>
                             </TableCell>
                             <TableCell align="left" className={classes.text}>
-                                <IconButton>
-                                    <MoreVertIcon className={classes.clickable} />
+                                <IconButton onClick={handleClickMenu}>
+                                    <MoreVertIcon />
                                 </IconButton>
                             </TableCell>
+                            {/* create a menu for each row */}
+                            <StyledMenu anchorEl={anchorEl}
+                                        keepMounted
+                                        open={Boolean(anchorEl)}
+                                        onClose={handleCloseMenu}
+                                        className={classes.text}>
+                                <StyledMenuItem><CreateIcon className={classes.icon}/>Edit</StyledMenuItem>
+                                <StyledMenuItem><UnpublishIcon color={'#828282'} className={classes.icon}/>Unpublish</StyledMenuItem>
+                                <StyledMenuItem><VisibilityIcon className={classes.icon}/>View on site</StyledMenuItem>
+                                <StyledMenuItem><LinkIcon className={classes.icon}/>Get direct link</StyledMenuItem>
+                                <StyledMenuItem><DeleteIcon className={classes.icon}/>Delete</StyledMenuItem>
+                            </StyledMenu>
                         </TableRow>
                     })}
                 </TableBody>
             </Table>
-            <div className={classes.fader}/>
+            <div className={classes.fader} />
         </TableContainer>
     )
 }

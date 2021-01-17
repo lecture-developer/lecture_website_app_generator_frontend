@@ -44,7 +44,7 @@ let years = [2015,2018,2020];
 
 function PublicationsRoot(){
   const classes = useStyles();
-  // rows = [];
+  const tableHeaders = ['Pubication Name', 'Authors', 'Last Edited', '', ''];
 
   return (
     <div className ={classes.root}>
