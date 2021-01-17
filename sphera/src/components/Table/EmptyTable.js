@@ -25,12 +25,12 @@ const useStyles = makeStyles({
     }
 });
 
-function EmptyTable() {
+function EmptyTable(props) {
     const classes = useStyles();
 
     return (
         <Paper className={classes.paper} >
-            <img src='' alt='No publications yet'></img>
+            <img src={props.img} alt='No publications yet'></img>
             <Typography variant="h5" component='h4' className={classes.title}>
                 You haven’t added any publications yet
             </Typography>

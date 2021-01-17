@@ -25,6 +25,24 @@ const useStyles = makeStyles((theme) => ({
   mainMenu: {
     marginTop: '10px',
     height: '55vh',
+  },
+  picked: {
+    position: "relative",
+    '&:after' : {
+      content: "''",
+      display: 'block',
+      position: 'absolute',
+      left: '0',
+      top: '0',
+      width: '4px',
+      height: '100%',
+      borderRadius: '0 7px 7px 0',
+      background: '#5A67D8'
+    },
+    '& span': {
+      color: "#5A67D8",
+      fontWeight: "bold",
+    }
   }
 }));
 
@@ -50,11 +68,11 @@ export default function MenuList() {
         fullName = "Theodore (Teddy) Lazebnik" />
         <Divider light />
         <div className={classes.mainMenu}>
-        <AboutMenuItem name="about" />
-        <ListItem name="publications" button onClick={styleClickedItem}>
+        <AboutMenuItem name="about"/>
+        <ListItem name="publications" className={classes.picked} button onClick={styleClickedItem}>
           <ListItemIcon>
             <PublicationsIcon
-              color={colorNotClicked}/>
+              color={colorClicked}/>
           </ListItemIcon>
           <ListItemText primary="Publications" />
         </ListItem>
