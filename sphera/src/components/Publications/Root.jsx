@@ -40,14 +40,14 @@ let rows = [
 
 function PublicationsRoot(){
   const classes = useStyles();
-  rows = [];
+  const tableHeaders = ['Pubication Name', 'Authors', 'Last Edited', '', ''];
 
   return (
     <div className ={classes.root}>
     <PublicationsHeader
     publicationsAmount="12" publicationsBtn={rows.length !== 0 ? true : false}/>
     <Filters/>
-    {rows.length !== 0 ? <ContentTable rows={rows}/> : <EmptyTable img={noPublicationsImg}/>}
+    {rows.length !== 0 ? <ContentTable rows={rows} headers={tableHeaders}/> : <EmptyTable img={noPublicationsImg}/>}
     </div>
   );
 
