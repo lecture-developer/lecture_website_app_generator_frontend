@@ -10,6 +10,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import Tooltip from '@material-ui/core/Tooltip';
+
 import CreateIcon from '@material-ui/icons/Create';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
@@ -20,6 +22,8 @@ import UnpublishIcon from '../Icons/UnpublishIcon';
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+
+import trim from '../SharedObjects/WordTrimmer';
 
 import './Table.css';
 
@@ -71,38 +75,52 @@ const useStyles = makeStyles({
 
 const StyledMenu = withStyles({
     paper: {
-      border: '1px solid #d3d4d5',
-      backgroundColor: '#F1F3F5'
+        border: '1px solid #d3d4d5',
+        backgroundColor: '#F1F3F5'
     },
-  })((props) => (
+})((props) => (
     <Menu
-      elevation={0}
-      getContentAnchorEl={null}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'left',
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      {...props}
+        elevation={0}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'left',
+        }}
+        transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+        }}
+        {...props}
     />
-  ));
+));
 
-  const StyledMenuItem = withStyles((theme) => ({
+const StyledMenuItem = withStyles((theme) => ({
     root: {
         '&:focus': {
             backgroundColor: theme.palette.primary.main,
             '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-            color: theme.palette.common.white,
+                color: theme.palette.common.white,
+            },
         },
-      },
     },
-  }))(MenuItem);
+}))(MenuItem);
+
+const toolTipStyle = makeStyles((theme) => ({
+    arrow: {
+      color: theme.palette.common.black
+    },
+    tooltip: {
+      backgroundColor: theme.palette.common.black,
+      marginTop: '0.5rem',
+      fontSize: '1rem',
+      fontWeight: '400'
+    }
+  }));
 
 function ContentTable(props) {
     const classes = useStyles();
+    const toolTipClass = toolTipStyle();
+
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleCloseMenu = () => {
@@ -112,6 +130,8 @@ function ContentTable(props) {
     const handleClickMenu = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
+    const maxPublicationNameLength = 80;
 
     return (
         <TableContainer className={`${classes.tableContainer} ${classes.relative}`} component={Paper}>
@@ -126,9 +146,14 @@ function ContentTable(props) {
                 </TableHead>
                 {/* the content of the table*/}
                 <TableBody>
-                    {props.rows.map((row) => {
-                        return <TableRow key={row.publicationName} className={classes.row}>
-                            <TableCell align="left" className={`${classes.text} ${classes.mainBlack}`}>{row.publicationName}</TableCell>
+                    {props.rows.map((row, i) => {
+                        return <TableRow key={row.publicationName + i} className={classes.row}>
+
+                            <Tooltip title={row.publicationName}  classes={toolTipClass} arrow placement='bottom'>
+                                <TableCell align="left" className={`${classes.text} ${classes.mainBlack}`}>
+                                    {trim(row.publicationName, maxPublicationNameLength)}
+                                </TableCell>
+                            </Tooltip>
                             <TableCell align="left" className={classes.text}>{row.authors}</TableCell>
                             <TableCell align="left" className={classes.text}>{row.lastEdit}</TableCell>
                             <TableCell align="left" className={classes.text}>
@@ -143,15 +168,15 @@ function ContentTable(props) {
                             </TableCell>
                             {/* create a menu for each row */}
                             <StyledMenu anchorEl={anchorEl}
-                                        keepMounted
-                                        open={Boolean(anchorEl)}
-                                        onClose={handleCloseMenu}
-                                        className={classes.text}>
-                                <StyledMenuItem><CreateIcon className={classes.icon}/>Edit</StyledMenuItem>
-                                <StyledMenuItem><UnpublishIcon color={'#828282'} className={classes.icon}/>Unpublish</StyledMenuItem>
-                                <StyledMenuItem><VisibilityIcon className={classes.icon}/>View on site</StyledMenuItem>
-                                <StyledMenuItem><LinkIcon className={classes.icon}/>Get direct link</StyledMenuItem>
-                                <StyledMenuItem><DeleteIcon className={classes.icon}/>Delete</StyledMenuItem>
+                                keepMounted
+                                open={Boolean(anchorEl)}
+                                onClose={handleCloseMenu}
+                                className={classes.text}>
+                                <StyledMenuItem><CreateIcon className={classes.icon} />Edit</StyledMenuItem>
+                                <StyledMenuItem><UnpublishIcon color={'#828282'} className={classes.icon} />Unpublish</StyledMenuItem>
+                                <StyledMenuItem><VisibilityIcon className={classes.icon} />View on site</StyledMenuItem>
+                                <StyledMenuItem><LinkIcon className={classes.icon} />Get direct link</StyledMenuItem>
+                                <StyledMenuItem><DeleteIcon className={classes.icon} />Delete</StyledMenuItem>
                             </StyledMenu>
                         </TableRow>
                     })}
