@@ -137,7 +137,7 @@ function ContentTable(props) {
         <TableContainer className={`${classes.tableContainer} ${classes.relative}`} component={Paper}>
             <Table stickyHeader className={`${classes.table} ${classes.relative}`} size="small" aria-label="simple table">
                 {/* the titles of the table*/}
-                <TableHead>
+                <TableHead className={classes.header}>
                     <TableRow className={classes.row}>
                         {props.headers.map(header => {
                             return <TableCell align="left" className={classes.headers}>{header}</TableCell>

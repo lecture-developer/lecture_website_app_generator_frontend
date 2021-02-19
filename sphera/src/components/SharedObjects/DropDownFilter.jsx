@@ -20,10 +20,10 @@ const useStyles = makeStyles(theme => ({
 const selectStyles = {
     control: (base,state) => ({
         ...base,
+        position: "static",
         boxShadow: "0px 2px 6px rgba(26, 32, 44, 0.04)",
         border: state.isFocused ? "2px solid #7F9CF5" : base.border,
         // borderColor: state.isFocused ? "#7F9CF5" : base.borderColor,
-        zIndex: "5",
         "&:hover": {
             borderColor: state.isFocused ? "#7F9CF5" : base.borderColor
         }
@@ -39,9 +39,8 @@ function DropDownFilter(props){
 
     function handleChange(selectedOption){
        setFilter(selectedOption);
-
-       // TODO: call another handler that filters the data on screen
-       //  props.filterContent();
+        console.log("selected value "+selectedOption.value);
+       props.filterContent(props.name,selectedOption.value.toString());
         console.log("filter selected");
     }
 
