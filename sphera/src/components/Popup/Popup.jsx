@@ -44,51 +44,53 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
- function ResponsiveDialog() {
+ function ResponsiveDialog(props) {
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(false);
-  const theme = useTheme();
+  // const [open, setOpen] = React.useState(false);
+  // const theme = useTheme();
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
+  // const dialogTitle = "You haven't added any links or files";
+  // const dialogContentText = "Are you sure you want to publish without them?";
+  // const closeButtonText = "No, go back";
+  // const continueButtonText = "Yes, Publish";
+  //isOpen, handleClose, title, subtitle,closeButtonText,continueButtonText
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open responsive dialog
-      </Button>
       <Dialog
         fullWidth={true}
         maxWidth={'sm'}
-        open={open}
-        onClose={handleClose}
+        open={props.isOpen}
+        onClose={props.handleClose}
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title"
         className={classes.title}>
-          {"You haven't added any links or files"}
+          {props.title}
           </DialogTitle>
         <DialogContent>
           <DialogContentText className={classes.parah}>
-            Are you sure you want to publish without them?
+            {props.subtitle}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose} 
+          <Button autoFocus onClick={props.handleClose} 
            className={classes.buttonText}
           color="primary">
-            No, go back
+            {props.closeButtonText}
           </Button>
-          <Button onClick={handleClose}
+          <Button onClick={props.handleContinue}
            className={classes.buttonText}
            color="primary" autoFocus>
-            Yes, Publish
+            {props.continueButtonText}
           </Button>
         </DialogActions>
       </Dialog>
