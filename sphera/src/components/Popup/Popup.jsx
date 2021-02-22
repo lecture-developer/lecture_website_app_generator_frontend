@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
- function ResponsiveDialog(props) {
+ function CustomDialog(props) {
   const classes = useStyles();
 
   // const [open, setOpen] = React.useState(false);
@@ -98,4 +98,4 @@ const useStyles = makeStyles(theme => ({
   );
 }
 
-export default ResponsiveDialog;
+export default CustomDialog;
