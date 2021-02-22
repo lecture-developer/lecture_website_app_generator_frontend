@@ -15,10 +15,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 import CreateIcon from '@material-ui/icons/Create';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import LinkIcon from '@material-ui/icons/Link';
 import DeleteIcon from '@material-ui/icons/Delete';
-import UnpublishIcon from '../Icons/UnpublishIcon';
+
+import  PublicationsIcon from "../Icons/PublicationsIcon";
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -69,14 +68,23 @@ const useStyles = makeStyles({
     },
     icon: {
         color: '#828282',
-        marginRight: '0.5rem'
+        marginRight: '0.5rem',
+       
+    },
+    spanIcon: {
+        marginLeft: '0.5rem'
+    },
+
+    padding:{
+        paddingTop: "0",
+        paddingBottom: "0"
     }
 });
 
 const StyledMenu = withStyles({
     paper: {
         border: '1px solid #d3d4d5',
-        backgroundColor: '#F1F3F5'
+        backgroundColor: '#F1F3F5',
     },
 })((props) => (
     <Menu
@@ -96,14 +104,22 @@ const StyledMenu = withStyles({
 
 const StyledMenuItem = withStyles((theme) => ({
     root: {
+        borderBottom: "1px solid #d3d4d5",
+        paddingRight: `calc(${theme.spacing(6)}px)`,
+        
         '&:focus': {
             backgroundColor: theme.palette.primary.main,
             '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
                 color: theme.palette.common.white,
             },
         },
+        '&:last-child':{
+            borderBottom: 'none'
+        }
+       
     },
 }))(MenuItem);
+
 
 const toolTipStyle = makeStyles((theme) => ({
     arrow: {
@@ -129,6 +145,7 @@ function ContentTable(props) {
 
     const handleClickMenu = (event) => {
         setAnchorEl(event.currentTarget);
+        console.log(event.currentTarget)
     };
 
     const maxPublicationNameLength = 80;
@@ -157,12 +174,12 @@ function ContentTable(props) {
                             <TableCell align="left" className={classes.text}>{row.authors}</TableCell>
                             <TableCell align="left" className={classes.text}>{row.lastEdit}</TableCell>
                             <TableCell align="left" className={classes.text}>
-                                <IconButton>
+                                <IconButton >
                                     <CreateIcon />
                                 </IconButton>
                             </TableCell>
                             <TableCell align="left" className={classes.text}>
-                                <IconButton onClick={handleClickMenu}>
+                                <IconButton  onClick={handleClickMenu}>
                                     <MoreVertIcon />
                                 </IconButton>
                             </TableCell>
@@ -171,11 +188,10 @@ function ContentTable(props) {
                                 keepMounted
                                 open={Boolean(anchorEl)}
                                 onClose={handleCloseMenu}
+                                MenuListProps={{classes: {padding: classes.padding}}}
                                 className={classes.text}>
                                 <StyledMenuItem><CreateIcon className={classes.icon} />Edit</StyledMenuItem>
-                                <StyledMenuItem><UnpublishIcon color={'#828282'} className={classes.icon} />Unpublish</StyledMenuItem>
-                                <StyledMenuItem><VisibilityIcon className={classes.icon} />View on site</StyledMenuItem>
-                                <StyledMenuItem><LinkIcon className={classes.icon} />Get direct link</StyledMenuItem>
+                                <StyledMenuItem><PublicationsIcon color={'#828282'} className={classes.icon} /><span className={classes.spanIcon}>Publish</span></StyledMenuItem>
                                 <StyledMenuItem><DeleteIcon className={classes.icon} />Delete</StyledMenuItem>
                             </StyledMenu>
                         </TableRow>
