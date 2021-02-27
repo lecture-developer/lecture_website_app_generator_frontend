@@ -25,6 +25,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import trim from '../SharedObjects/WordTrimmer';
 
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 import './Table.css';
 
 const useStyles = makeStyles({
@@ -71,6 +78,7 @@ const useStyles = makeStyles({
         color: '#828282',
         marginRight: '0.5rem'
     }
+    
 });
 
 const StyledMenu = withStyles({
@@ -107,15 +115,15 @@ const StyledMenuItem = withStyles((theme) => ({
 
 const toolTipStyle = makeStyles((theme) => ({
     arrow: {
-      color: theme.palette.common.black
+        color: theme.palette.common.black
     },
     tooltip: {
-      backgroundColor: theme.palette.common.black,
-      marginTop: '0.5rem',
-      fontSize: '1rem',
-      fontWeight: '400'
+        backgroundColor: theme.palette.common.black,
+        marginTop: '0.5rem',
+        fontSize: '1rem',
+        fontWeight: '400'
     }
-  }));
+}));
 
 function ContentTable(props) {
     const classes = useStyles();
@@ -130,8 +138,34 @@ function ContentTable(props) {
     const handleClickMenu = (event) => {
         setAnchorEl(event.currentTarget);
     };
-
     const maxPublicationNameLength = 80;
+
+
+
+    /*Delete publication*/
+    const [deleteEl, setDeleteEl] = React.useState(null);
+    
+    //Open delete dialog
+    const openDeleteDialog = (publication) => {
+        console.log("Ask Remove");
+        setDeleteEl(publication);
+    }
+
+    const deleteApproved = () => {
+        console.log("Remove");
+        console.log(deleteEl);
+        //Close both delete dialog and row menu
+        setDeleteEl(null);
+        setAnchorEl(null);
+    }
+
+
+    const deleteReject = () => {
+        console.log("Not Remove");
+        //Close both delete dialog and row menu
+        setDeleteEl(null);
+        setAnchorEl(null);
+    }
 
     return (
         <TableContainer className={`${classes.tableContainer} ${classes.relative}`} component={Paper}>
@@ -149,7 +183,7 @@ function ContentTable(props) {
                     {props.rows.map((row, i) => {
                         return <TableRow key={row.publicationName + i} className={classes.row}>
 
-                            <Tooltip title={row.publicationName}  classes={toolTipClass} arrow placement='bottom'>
+                            <Tooltip title={row.publicationName} classes={toolTipClass} arrow placement='bottom'>
                                 <TableCell align="left" className={`${classes.text} ${classes.mainBlack}`}>
                                     {trim(row.publicationName, maxPublicationNameLength)}
                                 </TableCell>
@@ -176,13 +210,33 @@ function ContentTable(props) {
                                 <StyledMenuItem><UnpublishIcon color={'#828282'} className={classes.icon} />Unpublish</StyledMenuItem>
                                 <StyledMenuItem><VisibilityIcon className={classes.icon} />View on site</StyledMenuItem>
                                 <StyledMenuItem><LinkIcon className={classes.icon} />Get direct link</StyledMenuItem>
-                                <StyledMenuItem><DeleteIcon className={classes.icon} />Delete</StyledMenuItem>
+                                <StyledMenuItem><DeleteIcon className={classes.icon} /><a value = {row} onClick={()=>openDeleteDialog(row)}>Delete</a></StyledMenuItem>
                             </StyledMenu>
                         </TableRow>
                     })}
                 </TableBody>
             </Table>
             <div className={classes.fader} />
+            {/*Delete Publication*/}
+            <Dialog open = { deleteEl }
+                onClose = { deleteReject }
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description" >
+                <DialogTitle id="alert-dialog-title">{"Delete Publications?"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                       2 publications will be deleted immediately. You can’t undo this action.
+                    </DialogContentText>
+                 </DialogContent>
+                 <DialogActions>
+                    <Button onClick={deleteReject} color="primary">
+                         Cancel
+                    </Button>
+                    <Button onClick={deleteApproved} color="primary" autoFocus>
+                        Delete
+                    </Button>
+                </DialogActions>
+            </Dialog >
         </TableContainer>
     )
 }
