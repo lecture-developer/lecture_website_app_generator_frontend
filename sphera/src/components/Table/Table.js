@@ -33,6 +33,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import './Table.css';
+import DeletePopup from "../Popup/DeletePopup.jsx";
+
 
 const useStyles = makeStyles({
     tableBody: {
@@ -210,7 +212,7 @@ function ContentTable(props) {
                                 <StyledMenuItem><UnpublishIcon color={'#828282'} className={classes.icon} />Unpublish</StyledMenuItem>
                                 <StyledMenuItem><VisibilityIcon className={classes.icon} />View on site</StyledMenuItem>
                                 <StyledMenuItem><LinkIcon className={classes.icon} />Get direct link</StyledMenuItem>
-                                <StyledMenuItem><DeleteIcon className={classes.icon} /><a value = {row} onClick={()=>openDeleteDialog(row)}>Delete</a></StyledMenuItem>
+                                <StyledMenuItem><DeleteIcon className={classes.icon} /><a value = {row} onClick={()=>DeletePopup(row)}>Delete</a></StyledMenuItem>
                             </StyledMenu>
                         </TableRow>
                     })}
