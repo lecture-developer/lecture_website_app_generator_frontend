@@ -4,14 +4,14 @@ import Button from '@material-ui/core/Button';
 
 function PublishPopup() {
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(null);
 
     const handleDialogOpen = () => {
       setIsOpen(true);
     }
     
     const handleDialogClose = () => {
-      setIsOpen(false);
+      setIsOpen(null);
     }
 
     return(
@@ -21,7 +21,7 @@ function PublishPopup() {
         </Button>
             { isOpen ?
         <CustomDialog
-        isOpen = {isOpen}
+        data = {isOpen}
         handleClose = {handleDialogClose}
         handleContinue = {handleDialogClose}
         title = {"You haven't added any links or files"}

@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
       <Dialog
         fullWidth={true}
         maxWidth={'sm'}
-        open={props.isOpen}
+        open={props.data}
         onClose={props.handleClose}
         aria-labelledby="responsive-dialog-title"
       >
