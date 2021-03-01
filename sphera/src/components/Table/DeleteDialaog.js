@@ -8,6 +8,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 function DeleteDialaog(someParameter, deleteEl, setDeleteEl) {
 
+    setDeleteEl(true);
+
 
     const deletePunlication = () => {
         console.log("Ask Remove");

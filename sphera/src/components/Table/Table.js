@@ -127,11 +127,11 @@ const toolTipStyle = makeStyles((theme) => ({
     }
 }));
 
+var selectedPublication = null; // publication selectd in table
 
 function ContentTable(props) {
     const classes = useStyles();
     const toolTipClass = toolTipStyle();
-    var currentRow = null;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -144,41 +144,33 @@ function ContentTable(props) {
     };
     const maxPublicationNameLength = 80;
 
-
-
-    /*Delete publication*/
+    /***Start Delete publication popup***/
     const [deleteEl, setDeleteEl] = React.useState(false);
     
-    const openPopip = (row) => {
+    const openDeletePopup = (row) => {
         console.log("Ask Remove");
-        currentRow = row;
+        selectedPublication = row;
         setDeleteEl(true);
-       // DeletePopup(deleteEl,deleteReject, deleteApproved)
-    }
-    
-    //Open delete dialog
-    const openDeleteDialog = (publication) => {
-        console.log("Ask Remove");
-        setDeleteEl(true);
-        openPopip(deleteReject, deleteApproved)
-
     }
 
+    // delete publication approved
     const deleteApproved = () => {
-        console.log("Remove");
-        console.log(currentRow);
+        console.log("Remove publication");
+        console.log(selectedPublication);
         //Close both delete dialog and row menu
         setDeleteEl(false);
         setAnchorEl(false);
     }
 
-
+    // delete publication not aproved or stoped
     const deleteReject = () => {
-        console.log("Not Remove");
+        console.log("Dont Remove");
         //Close both delete dialog and row menu
         setDeleteEl(false);
         setAnchorEl(false);
     }
+    /***End Delete publication popup***/
+
 
     return (
         <TableContainer className={`${classes.tableContainer} ${classes.relative}`} component={Paper}>
@@ -223,7 +215,7 @@ function ContentTable(props) {
                                 <StyledMenuItem><UnpublishIcon color={'#828282'} className={classes.icon} />Unpublish</StyledMenuItem>
                                 <StyledMenuItem><VisibilityIcon className={classes.icon} />View on site</StyledMenuItem>
                                 <StyledMenuItem><LinkIcon className={classes.icon} />Get direct link</StyledMenuItem>
-                                <StyledMenuItem  value = {row} onClick={()=>{openPopip(row)}}><DeleteIcon className={classes.icon} />Delete </StyledMenuItem>
+                                <StyledMenuItem  value = {row} onClick={()=>{openDeletePopup(row)}}><DeleteIcon className={classes.icon} />Delete </StyledMenuItem>
                             </StyledMenu>
                         </TableRow>
                     })}
