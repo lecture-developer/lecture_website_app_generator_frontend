@@ -127,9 +127,11 @@ const toolTipStyle = makeStyles((theme) => ({
     }
 }));
 
+
 function ContentTable(props) {
     const classes = useStyles();
     const toolTipClass = toolTipStyle();
+    var currentRow = null;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -145,28 +147,37 @@ function ContentTable(props) {
 
 
     /*Delete publication*/
-    const [deleteEl, setDeleteEl] = React.useState(null);
+    const [deleteEl, setDeleteEl] = React.useState(false);
+    
+    const openPopip = (row) => {
+        console.log("Ask Remove");
+        currentRow = row;
+        setDeleteEl(true);
+       // DeletePopup(deleteEl,deleteReject, deleteApproved)
+    }
     
     //Open delete dialog
     const openDeleteDialog = (publication) => {
         console.log("Ask Remove");
-        setDeleteEl(publication);
+        setDeleteEl(true);
+        openPopip(deleteReject, deleteApproved)
+
     }
 
     const deleteApproved = () => {
         console.log("Remove");
-        console.log(deleteEl);
+        console.log(currentRow);
         //Close both delete dialog and row menu
-        setDeleteEl(null);
-        setAnchorEl(null);
+        setDeleteEl(false);
+        setAnchorEl(false);
     }
 
 
     const deleteReject = () => {
         console.log("Not Remove");
         //Close both delete dialog and row menu
-        setDeleteEl(null);
-        setAnchorEl(null);
+        setDeleteEl(false);
+        setAnchorEl(false);
     }
 
     return (
@@ -212,33 +223,14 @@ function ContentTable(props) {
                                 <StyledMenuItem><UnpublishIcon color={'#828282'} className={classes.icon} />Unpublish</StyledMenuItem>
                                 <StyledMenuItem><VisibilityIcon className={classes.icon} />View on site</StyledMenuItem>
                                 <StyledMenuItem><LinkIcon className={classes.icon} />Get direct link</StyledMenuItem>
-                                <StyledMenuItem><DeleteIcon className={classes.icon} /><a value = {row} onClick={()=>DeletePopup(row)}>Delete</a></StyledMenuItem>
+                                <StyledMenuItem  value = {row} onClick={()=>{openPopip(row)}}><DeleteIcon className={classes.icon} />Delete </StyledMenuItem>
                             </StyledMenu>
                         </TableRow>
                     })}
                 </TableBody>
             </Table>
             <div className={classes.fader} />
-            {/*Delete Publication*/}
-            <Dialog open = { deleteEl }
-                onClose = { deleteReject }
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description" >
-                <DialogTitle id="alert-dialog-title">{"Delete Publications?"}</DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                       2 publications will be deleted immediately. You can’t undo this action.
-                    </DialogContentText>
-                 </DialogContent>
-                 <DialogActions>
-                    <Button onClick={deleteReject} color="primary">
-                         Cancel
-                    </Button>
-                    <Button onClick={deleteApproved} color="primary" autoFocus>
-                        Delete
-                    </Button>
-                </DialogActions>
-            </Dialog >
+            {deleteEl? <DeletePopup dataToDelete={deleteEl} handleDialogClose={deleteReject} handleDialogDelete={deleteApproved} />: <span></span>}
         </TableContainer>
     )
 }

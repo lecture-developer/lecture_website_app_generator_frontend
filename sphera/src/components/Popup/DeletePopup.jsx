@@ -1,38 +1,20 @@
-import React, {useState} from "react";
+import React from "react";
 import CustomDialog from "./Popup";
-import Button from '@material-ui/core/Button';
 
-function DeletePopup(data) {
-
-    const [dataToDelete, setdataToDelete] = useState(data);
-
-    
-    const handleDialogClose = () => {
-        console.log('Close this popup');
-        setdataToDelete(false);
-    }
-
-    const handleDialogDelete = () => {
-        console.log(dataToDelete);
-        setdataToDelete(false);
-    }
-
-
-
+function DeletePopup(props) {
     return(
         <div>
         <CustomDialog
-        isOpen = {dataToDelete}
-        handleClose = {handleDialogClose}
-        handleContinue = {handleDialogDelete}
-        title = {"You haven't added any links or files"}
-        subtitle= {"Are you sure you want to publish without them?"}
-        closeButtonText = {"No, go back"}
-        continueButtonText = {"Yes, Publish"}> 
+        isOpen = {props.dataToDelete}
+        handleClose = {props.handleDialogClose}
+        handleContinue = {props.handleDialogDelete}
+        title = {"Delete Publications?"}
+        subtitle= {"publications will be deleted immediately. You can’t undo this action."}
+        closeButtonText = {"Cancel"}
+        continueButtonText = {"Delete"}> 
         </CustomDialog> 
         </div>
     )
-    
 
 }
 
