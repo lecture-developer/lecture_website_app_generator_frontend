@@ -139,38 +139,20 @@ function ContentTable(props) {
         setAnchorEl(null);
     };
 
-    const handleClickMenu = (event) => {
+    const handleClickMenu = (event, clickedRowIndex) => {
+        // set current global selected publication for later use if needed
+        selectedPublication = clickedRowIndex;
         setAnchorEl(event.currentTarget);
     };
     const maxPublicationNameLength = 80;
 
-    /***Start Delete publication popup***/
-    const [deleteEl, setDeleteEl] = React.useState(false);
+    // If true - open delete popup
+    const [isDeletePopup, setIsDeletePopup] = React.useState(false);
     
-    const openDeletePopup = (row) => {
-        console.log("Ask Remove");
-        selectedPublication = row;
-        setDeleteEl(true);
+    const openDeletePopup = () => {
+        console.log("Open remove popup");
+        setIsDeletePopup(true);
     }
-
-    // delete publication approved
-    const deleteApproved = () => {
-        console.log("Remove publication");
-        console.log(selectedPublication);
-        //Close both delete dialog and row menu
-        setDeleteEl(false);
-        setAnchorEl(false);
-    }
-
-    // delete publication not aproved or stoped
-    const deleteReject = () => {
-        console.log("Dont Remove");
-        //Close both delete dialog and row menu
-        setDeleteEl(false);
-        setAnchorEl(false);
-    }
-    /***End Delete publication popup***/
-
 
     return (
         <TableContainer className={`${classes.tableContainer} ${classes.relative}`} component={Paper}>
@@ -186,8 +168,8 @@ function ContentTable(props) {
                 {/* the content of the table*/}
                 <TableBody>
                     {props.rows.map((row, i) => {
-                        return <TableRow key={row.publicationName + i} className={classes.row}>
-
+                        const publicaton = row;
+                        return (<TableRow key={row.publicationName + i} className={classes.row}> 
                             <Tooltip title={row.publicationName} classes={toolTipClass} arrow placement='bottom'>
                                 <TableCell align="left" className={`${classes.text} ${classes.mainBlack}`}>
                                     {trim(row.publicationName, maxPublicationNameLength)}
@@ -201,7 +183,7 @@ function ContentTable(props) {
                                 </IconButton>
                             </TableCell>
                             <TableCell align="left" className={classes.text}>
-                                <IconButton onClick={handleClickMenu}>
+                                <IconButton onClick={(event)=>{handleClickMenu(event,i)}}>
                                     <MoreVertIcon />
                                 </IconButton>
                             </TableCell>
@@ -215,14 +197,16 @@ function ContentTable(props) {
                                 <StyledMenuItem><UnpublishIcon color={'#828282'} className={classes.icon} />Unpublish</StyledMenuItem>
                                 <StyledMenuItem><VisibilityIcon className={classes.icon} />View on site</StyledMenuItem>
                                 <StyledMenuItem><LinkIcon className={classes.icon} />Get direct link</StyledMenuItem>
-                                <StyledMenuItem  value = {row} onClick={()=>{openDeletePopup(row)}}><DeleteIcon className={classes.icon} />Delete </StyledMenuItem>
+                                <StyledMenuItem onClick={openDeletePopup}><DeleteIcon className={classes.icon} />Delete </StyledMenuItem>
                             </StyledMenu>
                         </TableRow>
-                    })}
+                    )})}
                 </TableBody>
             </Table>
             <div className={classes.fader} />
-            {deleteEl? <DeletePopup dataToDelete={deleteEl} handleDialogClose={deleteReject} handleDialogDelete={deleteApproved} />: <span></span>}
+            {/*If deleteEl*/}
+            {isDeletePopup?
+            <DeletePopup isDeletePopup={isDeletePopup} setIsDeletePopup={setIsDeletePopup} setAnchorEl={setAnchorEl} selectedPublication={selectedPublication} removeFunc={props.removeFunc} />: <span></span>}
         </TableContainer>
     )
 }
