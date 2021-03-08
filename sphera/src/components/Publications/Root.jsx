@@ -56,8 +56,6 @@ let types = getFilter("type");
 let years = getFilter("year");
 
 
-
-
 function PublicationsRoot(){
   const classes = useStyles();
   const [isFiltered, setIsFiltered] = useState(false);
