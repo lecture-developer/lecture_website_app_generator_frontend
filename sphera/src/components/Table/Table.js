@@ -26,6 +26,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import trim from '../SharedObjects/WordTrimmer';
 
 import './Table.css';
+import DeletePopup from "../Popup/DeletePopup.jsx";
+
 
 const useStyles = makeStyles({
     tableBody: {
@@ -71,6 +73,7 @@ const useStyles = makeStyles({
         color: '#828282',
         marginRight: '0.5rem'
     }
+    
 });
 
 const StyledMenu = withStyles({
@@ -107,15 +110,17 @@ const StyledMenuItem = withStyles((theme) => ({
 
 const toolTipStyle = makeStyles((theme) => ({
     arrow: {
-      color: theme.palette.common.black
+        color: theme.palette.common.black
     },
     tooltip: {
-      backgroundColor: theme.palette.common.black,
-      marginTop: '0.5rem',
-      fontSize: '1rem',
-      fontWeight: '400'
+        backgroundColor: theme.palette.common.black,
+        marginTop: '0.5rem',
+        fontSize: '1rem',
+        fontWeight: '400'
     }
-  }));
+}));
+
+var selectedPublication = null; // publication selectd in table
 
 function ContentTable(props) {
     const classes = useStyles();
@@ -127,11 +132,20 @@ function ContentTable(props) {
         setAnchorEl(null);
     };
 
-    const handleClickMenu = (event) => {
+    const handleClickMenu = (event, clickedRowIndex) => {
+        // set current global selected publication for later use if needed
+        selectedPublication = clickedRowIndex;
         setAnchorEl(event.currentTarget);
     };
-
     const maxPublicationNameLength = 80;
+
+    // If true - open delete popup
+    const [isDeletePopup, setIsDeletePopup] = React.useState(false);
+    
+    const openDeletePopup = () => {
+        console.log("Open remove popup");
+        setIsDeletePopup(true);
+    }
 
     return (
         <TableContainer className={`${classes.tableContainer} ${classes.relative}`} component={Paper}>
@@ -147,9 +161,9 @@ function ContentTable(props) {
                 {/* the content of the table*/}
                 <TableBody>
                     {props.rows.map((row, i) => {
-                        return <TableRow key={row.publicationName + i} className={classes.row}>
-
-                            <Tooltip title={row.publicationName}  classes={toolTipClass} arrow placement='bottom'>
+                        const publicaton = row;
+                        return (<TableRow key={row.publicationName + i} className={classes.row}> 
+                            <Tooltip title={row.publicationName} classes={toolTipClass} arrow placement='bottom'>
                                 <TableCell align="left" className={`${classes.text} ${classes.mainBlack}`}>
                                     {trim(row.publicationName, maxPublicationNameLength)}
                                 </TableCell>
@@ -162,7 +176,7 @@ function ContentTable(props) {
                                 </IconButton>
                             </TableCell>
                             <TableCell align="left" className={classes.text}>
-                                <IconButton onClick={handleClickMenu}>
+                                <IconButton onClick={(event)=>{handleClickMenu(event,i)}}>
                                     <MoreVertIcon />
                                 </IconButton>
                             </TableCell>
@@ -176,13 +190,16 @@ function ContentTable(props) {
                                 <StyledMenuItem><UnpublishIcon color={'#828282'} className={classes.icon} />Unpublish</StyledMenuItem>
                                 <StyledMenuItem><VisibilityIcon className={classes.icon} />View on site</StyledMenuItem>
                                 <StyledMenuItem><LinkIcon className={classes.icon} />Get direct link</StyledMenuItem>
-                                <StyledMenuItem><DeleteIcon className={classes.icon} />Delete</StyledMenuItem>
+                                <StyledMenuItem onClick={openDeletePopup}><DeleteIcon className={classes.icon} />Delete </StyledMenuItem>
                             </StyledMenu>
                         </TableRow>
-                    })}
+                    )})}
                 </TableBody>
             </Table>
             <div className={classes.fader} />
+            {/*If deleteEl*/}
+            {isDeletePopup?
+            <DeletePopup isDeletePopup={isDeletePopup} setIsDeletePopup={setIsDeletePopup} setAnchorEl={setAnchorEl} selectedPublication={selectedPublication} removeFunc={props.removeFunc} />: <span></span>}
         </TableContainer>
     )
 }
