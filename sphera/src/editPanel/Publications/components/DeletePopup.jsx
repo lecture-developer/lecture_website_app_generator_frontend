@@ -1,5 +1,5 @@
 import React from "react";
-import CustomDialog from "./Popup";
+import CustomDialog from "../../../libraries/Popup/Popup";
 
 // delete publication approved
 function deleteApproved(setDeleteEl, setAnchorEl, selectedPublication, removeFunc) {

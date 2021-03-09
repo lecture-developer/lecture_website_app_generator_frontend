@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import CustomDialog from "./Popup";
+import CustomDialog from "../../../libraries/Popup/Popup";
 import Button from '@material-ui/core/Button';
 
 function PublishPopup() {

@@ -7,10 +7,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import SideMenu from "./components/SideMenu/SideMenu";
-import PublicationsRoot from "./components/Publications/Root";
-import Navbar from './components/Navbar/Navbar';
-import ContentTable from './components/Table/Table';
+import SideMenu from "./libraries/SideMenu/SideMenu";
+import PublicationsRoot from "./editPanel/Publications/Root";
+import Navbar from './libraries/Navbar/Navbar';
+import ContentTable from './editPanel/Publications/components/Table/Table';
 
 
 const useStyles = makeStyles((theme) => ({

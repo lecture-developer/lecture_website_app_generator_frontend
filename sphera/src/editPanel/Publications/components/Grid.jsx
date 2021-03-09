@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import ContentCard from "./Card";
+import ContentCard from "../../../libraries/Card";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import GridList from '@material-ui/core/GridList';
 
