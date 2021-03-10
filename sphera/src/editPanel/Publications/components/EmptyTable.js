@@ -2,7 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from '@material-ui/core/Typography';
-import PrimaryButton from "../SharedObjects/PrimaryButton";
+import PrimaryButton from "../../../libraries/PrimaryButton";
 
 const useStyles = makeStyles({
     paper: {

@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
-import PublicationsHeader from "./PublicationsHeader";
-import Filters from "./Filters";
-import ContentTable from "../Table/Table";
-import EmptyTable from "../Table/EmptyTable";
-import DisplayGrid from "../Grid/Grid";
+import PublicationsHeader from "./components/PublicationsHeader";
+import Filters from "./components/Filters";
+import ContentTable from "./components/Table/Table";
+import EmptyTable from "./components/EmptyTable";
+import DisplayGrid from "./components/Grid";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,7 +38,7 @@ let rows = [
 
 let topics = ["algorithms","snow","music"];
 let types = ["paper","website","movie"];
-let years = [2015,2018,2020];
+let years = [2015,2018,2021];
 
 
 

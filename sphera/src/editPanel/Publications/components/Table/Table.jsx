@@ -18,15 +18,15 @@ import IconButton from '@material-ui/core/IconButton';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import LinkIcon from '@material-ui/icons/Link';
 import DeleteIcon from '@material-ui/icons/Delete';
-import UnpublishIcon from '../Icons/UnpublishIcon';
+import UnpublishIcon from '../../../../assets/Icons/UnpublishIcon';
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import trim from '../SharedObjects/WordTrimmer';
+import trim from '../../../../scripts/WordTrimmer';
 
 import './Table.css';
-import DeletePopup from "../Popup/DeletePopup.jsx";
+import DeletePopup from "../DeletePopup.jsx";
 
 
 const useStyles = makeStyles({
