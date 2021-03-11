@@ -8,13 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import ViewMode from "./ViewMode";
 import {Divider} from "@material-ui/core";
 
-/***
- * Filters row
- * props:
- *  3 lists with filter values {topics, types and years}
- *  4 handler functions - one for each filter + for sorting
- *
- */
+
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -77,21 +71,24 @@ function Filters(props){
                 <Grid item>
                 <FormLabel className={classes.label}>Filter by</FormLabel>
                     <DropDownFilter
+                        name={"topic"}
                         options ={topic}
                         placeholder={"Topic"}
-                        filterContent={props.filterTopic}/>
+                        filterContent={props.filterContent}/>
                 </Grid>
                 <Grid item>
                     <DropDownFilter
+                        name={"type"}
                         options ={type}
                         placeholder={"Type"}
-                        filterContent={props.filterType}/>
+                        filterContent={props.filterContent}/>
                 </Grid>
                 <Grid item>
                     <DropDownFilter
+                        name={"year"}
                         options ={year}
                         placeholder={"Year"}
-                        filterContent={props.filterYear}/>
+                        filterContent={props.filterContent}/>
                 </Grid>
                 <Grid item>
                 <FormLabel className={classes.label}>Sort by</FormLabel>

@@ -37,24 +37,24 @@ function DropDownFilter(props){
     const [filter,setFilter] = useState("");
     const classes = useStyles();
 
-    function handleChange(selectedOption){
+    const handleChange = (selectedOption) => {
        setFilter(selectedOption);
+       console.log(selectedOption);
+       props.filterContent("year",selectedOption.value);
+       console.log("filter selected");
 
-       // TODO: call another handler that filters the data on screen
-       //  props.filterContent();
-        console.log("filter selected");
     }
 
     return (
         <div className={classes.container}>
         <Select
+            name={props.name}
             styles={selectStyles}
-            isClearable={false}
+            isClearable={true}
             value={filter}
             placeholder={props.placeholder}
             onChange={handleChange}
             options = {props.options} />
-            {console.log(filter)}
         </div>
     );
 }

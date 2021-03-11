@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from '@material-ui/core/Grid';
 import PublicationsHeader from "./components/PublicationsHeader";
 import Filters from "./components/Filters";
 import ContentTable from "./components/Table/Table";
@@ -15,35 +14,52 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function createData(publicationName, authors, lastEdit,content,tags) {
-  return { publicationName, authors, lastEdit, content, tags };
+function createData(publicationName, authors, lastEdit,content,tags, topic, type, year) {
+  return { publicationName, authors, lastEdit, content, tags, topic, type, year };
 }
 
 let rows = [
-  createData('1A stable algorithm for numerical matrix exponent', 'You and Shlomo Yossi', '22/2/20  |  22:38', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper","X","Y","Z","w"]),
-  createData('2A stable algorithm for numerical matrix exponent max max max max max max max max max max max max max', 'You and Shlomo Y..', '22/2/20  |  22:38', "lorem",[]),
-  createData('3A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38',"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper"]),
-  createData('4A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper","X","Y","Z","w"]),
-  createData('5A stable algorithm for numerical matrix exponent max max max..', 'You and Shlomo Y..', '22/2/20  |  22:38', "lorem",[]),
-  createData('6A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38',"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper"]),
-  createData('7A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper","X","Y","Z","w"]),
-  createData('8A stable algorithm for numerical matrix exponent max max max..', 'You and Shlomo Y..', '22/2/20  |  22:38', "lorem",[]),
-  createData('9A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38',"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper"]),
-  createData('10A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper","X","Y","Z","w"]),
-  createData('11A stable algorithm for numerical matrix exponent max max max..', 'You and Shlomo Y..', '22/2/20  |  22:38', "lorem",[]),
-  createData('12A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38',"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper"]),
+  createData('1A stable algorithm for numerical matrix exponent', 'You and Shlomo Yossi', '22/2/20  |  22:38', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper","X","Y","Z","w"], "algorithms", "paper", 2015),
+  createData('2A stable algorithm for numerical matrix exponent max max max max max max max max max max max max max', 'You and Shlomo Y..', '22/2/20  |  22:38', "lorem",[],  "music", "website", 2018),
+  createData('3A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38',"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper"], "snow", "movie", 2017),
+  createData('4A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper","X","Y","Z","w"], "algorithms", "website", 2015),
+  createData('5A stable algorithm for numerical matrix exponent max max max..', 'You and Shlomo Y..', '22/2/20  |  22:38', "lorem",[],  "music", "website", 2017),
+  createData('6A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38',"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper"],"snow", "paper", 2017),
+  createData('7A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper","X","Y","Z","w"], "music", "movie", 2018),
+  createData('8A stable algorithm for numerical matrix exponent max max max..', 'You and Shlomo Y..', '22/2/20  |  22:38', "lorem",[], "snow", "website", 2020),
+  createData('9A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38',"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper"], "music", "movie", 2015),
+  createData('10A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper","X","Y","Z","w"], "algorithms", "paper", 2017),
+  createData('11A stable algorithm for numerical matrix exponent max max max..', 'You and Shlomo Y..', '22/2/20  |  22:38', "lorem",[], "algorithms", "movie", 2020),
+  createData('12A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38',"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper"],"snow", "paper", 2015),
 ];
 
+let filteredContent = [];
 
+function getFilter(value){
+  let filter = new Set();
+  for (let r of rows) {
+    if(value === "topic"){
+      filter.add(r.topic.toLowerCase().trim());
+    } else if (value === "type"){
+      filter.add(r.type.toLowerCase().trim());
+    } else if (value === "year") {
+      filter.add(r.year.toString().toLowerCase().trim());
+    } else {
+      console.log("getFilter - incorrect value");
+      return;
+    }
+  }
+  return Array.from(filter);
+}
 
-let topics = ["algorithms","snow","music"];
-let types = ["paper","website","movie"];
-let years = [2015,2018,2021];
-
+let topics = getFilter("topic");
+let types = getFilter("type");
+let years = getFilter("year");
 
 
 function PublicationsRoot(){
   const classes = useStyles();
+  const [isFiltered, setIsFiltered] = useState(false);
   const tableHeaders = ['Pubication Name', 'Authors', 'Last Edited', '', ''];
   const [displayList, setDisplayList] = useState(true);
   const [publicationsList, setPublicationsList] = useState(rows); // used to change the data automaticly
@@ -59,6 +75,37 @@ function PublicationsRoot(){
     }
   }
 
+  function filterByValue(filterName,value){
+    filteredContent = [];
+    setIsFiltered(false);
+    console.log("filtering by: "+filterName+", "+value);
+    if(filterName === "topic"){
+      for (let r of rows){
+        if(r.topic.toString().toLowerCase().trim() === value){
+          filteredContent.push(r);
+        }
+      }
+    } else if (filterName === "type"){
+      for (let r of rows){
+        if(r.type.toString().toLowerCase().trim() === value){
+          filteredContent.push(r);
+        }
+      }
+      return filteredContent;
+    } else if (filterName === "year") {
+      for (let r of rows){
+        if(r.year.toString().toLowerCase().trim() === value){
+          filteredContent.push(r);
+        }
+      }
+    } else {
+      console.log("error in filters");
+    }
+    console.log(filteredContent);
+    setIsFiltered(true);
+  }
+
+
   return (
     <div className ={classes.root}>
     <PublicationsHeader
@@ -67,8 +114,17 @@ function PublicationsRoot(){
       topics={topics}
       types={types}
       years={years}
-    displayList={setDisplayList}/>
-    {displayList ? publicationsList.length !== 0 ? <ContentTable rows={publicationsList} headers = {tableHeaders} removeFunc={removePublication} /> : <EmptyTable/> : <DisplayGrid rows={publicationsList}/>}
+    displayList={setDisplayList}
+    filterContent={filterByValue}/>
+
+      {rows.length > 0  && !isFiltered ? // if the content is not filtered - display all rows
+          displayList ?
+              <ContentTable rows={rows} headers = {tableHeaders} removeFunc={removePublication}/> :  <DisplayGrid rows={rows}/> :
+          isFiltered ? // otherwise, display only the filtered content
+              displayList ?
+                  <ContentTable rows={filteredContent} headers = {tableHeaders} removeFunc={removePublication}/> :  <DisplayGrid rows={filteredContent}/> : <EmptyTable/>}
+
+      {/*{displayList ? publicationsList.length !== 0 ? <ContentTable rows={publicationsList} headers = {tableHeaders} removeFunc={removePublication} /> : <EmptyTable/> : <DisplayGrid rows={publicationsList}/>}*/}
 
     </div>
   );
