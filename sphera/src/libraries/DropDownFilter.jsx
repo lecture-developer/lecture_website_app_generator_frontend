@@ -39,8 +39,12 @@ function DropDownFilter(props){
 
     const handleChange = (selectedOption) => {
        setFilter(selectedOption);
+       if(selectedOption == null){
+           props.filterContent(null);
+           return;
+       }
        console.log(selectedOption);
-       props.filterContent("year",selectedOption.value);
+       props.filterContent(props.name.toString(),selectedOption.value);
        console.log("filter selected");
 
     }

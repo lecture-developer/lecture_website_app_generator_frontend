@@ -77,7 +77,9 @@ function PublicationsRoot(){
 
   function filterByValue(filterName,value){
     filteredContent = [];
-    setIsFiltered(false);
+    if(filterName == null){
+      setPublicationsList(rows);
+    }
     console.log("filtering by: "+filterName+", "+value);
     if(filterName === "topic"){
       for (let r of rows){
@@ -87,11 +89,11 @@ function PublicationsRoot(){
       }
     } else if (filterName === "type"){
       for (let r of rows){
+        console.log(r.type.toString().toLowerCase().trim() === value);
         if(r.type.toString().toLowerCase().trim() === value){
           filteredContent.push(r);
         }
       }
-      return filteredContent;
     } else if (filterName === "year") {
       for (let r of rows){
         if(r.year.toString().toLowerCase().trim() === value){
@@ -102,7 +104,7 @@ function PublicationsRoot(){
       console.log("error in filters");
     }
     console.log(filteredContent);
-    setIsFiltered(true);
+    setPublicationsList(filteredContent);
   }
 
 
@@ -114,17 +116,12 @@ function PublicationsRoot(){
       topics={topics}
       types={types}
       years={years}
-    displayList={setDisplayList}
-    filterContent={filterByValue}/>
+      displayList={setDisplayList}
+      filterContent={filterByValue}/>
 
-      {rows.length > 0  && !isFiltered ? // if the content is not filtered - display all rows
-          displayList ?
-              <ContentTable rows={rows} headers = {tableHeaders} removeFunc={removePublication}/> :  <DisplayGrid rows={rows}/> :
-          isFiltered ? // otherwise, display only the filtered content
-              displayList ?
-                  <ContentTable rows={filteredContent} headers = {tableHeaders} removeFunc={removePublication}/> :  <DisplayGrid rows={filteredContent}/> : <EmptyTable/>}
-
-      {/*{displayList ? publicationsList.length !== 0 ? <ContentTable rows={publicationsList} headers = {tableHeaders} removeFunc={removePublication} /> : <EmptyTable/> : <DisplayGrid rows={publicationsList}/>}*/}
+      {displayList ? publicationsList.length !== 0 ?
+          <ContentTable rows={publicationsList} headers = {tableHeaders} removeFunc={removePublication} /> :
+          <EmptyTable/> : <DisplayGrid rows={publicationsList}/>}
 
     </div>
   );
