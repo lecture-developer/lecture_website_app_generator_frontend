@@ -10,8 +10,8 @@ import AboutMenuItem from "./AboutMenuItem";
 import ResourcesMenuItem from "./ResourcesMenuItem";
 import FooterList from "./Footer/FooterList";
 import Header from "./Header/Header";
-import CoursesIcon from "../Icons/CoursesIcon";
-import PublicationsIcon from "../Icons/PublicationsIcon";
+import CoursesIcon from "../../assets/Icons/CoursesIcon";
+import PublicationsIcon from "../../assets/Icons/PublicationsIcon";
 
 const useStyles = makeStyles((theme) => ({
   list: {
