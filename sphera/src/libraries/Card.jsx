@@ -8,6 +8,8 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import {Divider} from "@material-ui/core";
 import Chip from "@material-ui/core/Chip";
 
+//TODO: make it generic
+
 const useStyles = makeStyles({
     root: {
         minWidth: '100%',

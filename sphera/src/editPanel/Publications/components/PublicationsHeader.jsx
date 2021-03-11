@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import PrimaryButton from "../SharedObjects/PrimaryButton";
+import PrimaryButton from "../../../libraries/PrimaryButton";
 
 const useStyles = makeStyles(theme => ({
   root: {
