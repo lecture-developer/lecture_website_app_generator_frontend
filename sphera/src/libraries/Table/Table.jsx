@@ -18,15 +18,15 @@ import IconButton from '@material-ui/core/IconButton';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import LinkIcon from '@material-ui/icons/Link';
 import DeleteIcon from '@material-ui/icons/Delete';
-import UnpublishIcon from '../../../../assets/Icons/UnpublishIcon';
+import UnpublishIcon from '../../assets/Icons/UnpublishIcon';
+import DeletePopup from '../../editPanel/Publications/components/DeletePopup';
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import trim from '../../../../scripts/WordTrimmer';
+import trim from '../../scripts/WordTrimmer';
 
 import './Table.css';
-import DeletePopup from "../DeletePopup.jsx";
 
 
 const useStyles = makeStyles({
@@ -36,6 +36,7 @@ const useStyles = makeStyles({
     },
     tableContainer: {
         marginTop: '2rem',
+        marginBotton: '2rem',
         maxHeight: '53vh'
     },
     row: {
@@ -120,7 +121,7 @@ const toolTipStyle = makeStyles((theme) => ({
     }
 }));
 
-var selectedPublication = null; // publication selectd in table
+var selectedItem = null; // publication selectd in table
 
 function ContentTable(props) {
     const classes = useStyles();
@@ -133,11 +134,12 @@ function ContentTable(props) {
     };
 
     const handleClickMenu = (event, clickedRowIndex) => {
-        // set current global selected publication for later use if needed
-        selectedPublication = clickedRowIndex;
+        // set current global selected item for later use if needed
+        selectedItem = clickedRowIndex;
         setAnchorEl(event.currentTarget);
     };
-    const maxPublicationNameLength = 80;
+    
+    const maxItemLength = 80;
 
     // If true - open delete popup
     const [isDeletePopup, setIsDeletePopup] = React.useState(false);
@@ -161,11 +163,10 @@ function ContentTable(props) {
                 {/* the content of the table*/}
                 <TableBody>
                     {props.rows.map((row, i) => {
-                        const publicaton = row;
                         return (<TableRow key={row.publicationName + i} className={classes.row}> 
                             <Tooltip title={row.publicationName} classes={toolTipClass} arrow placement='bottom'>
                                 <TableCell align="left" className={`${classes.text} ${classes.mainBlack}`}>
-                                    {trim(row.publicationName, maxPublicationNameLength)}
+                                    {trim(row.publicationName, maxItemLength)}
                                 </TableCell>
                             </Tooltip>
                             <TableCell align="left" className={classes.text}>{row.authors}</TableCell>
@@ -199,7 +200,7 @@ function ContentTable(props) {
             <div className={classes.fader} />
             {/*If deleteEl*/}
             {isDeletePopup?
-            <DeletePopup isDeletePopup={isDeletePopup} setIsDeletePopup={setIsDeletePopup} setAnchorEl={setAnchorEl} selectedPublication={selectedPublication} removeFunc={props.removeFunc} />: <span></span>}
+            <DeletePopup isDeletePopup={isDeletePopup} setIsDeletePopup={setIsDeletePopup} setAnchorEl={setAnchorEl} selectedItem={selectedItem} removeFunc={props.removeFunc} />: <span></span>}
         </TableContainer>
     )
 }

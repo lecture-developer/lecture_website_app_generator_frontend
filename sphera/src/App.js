@@ -10,7 +10,6 @@ import Divider from '@material-ui/core/Divider';
 import SideMenu from "./libraries/SideMenu/SideMenu";
 import PublicationsRoot from "./editPanel/Publications/Root";
 import Navbar from './libraries/Navbar/Navbar';
-import ContentTable from './editPanel/Publications/components/Table/Table';
 
 
 const useStyles = makeStyles((theme) => ({

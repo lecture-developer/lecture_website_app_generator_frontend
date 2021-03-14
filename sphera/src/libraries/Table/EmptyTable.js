@@ -2,17 +2,17 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from '@material-ui/core/Typography';
-import PrimaryButton from "../../../libraries/PrimaryButton";
+import PrimaryButton from "../PrimaryButton";
 
 const useStyles = makeStyles({
     paper: {
-        marginTop: '2rem',
+        marginBottom: '2rem',
         height: '100%',
         width: '100%',
         textAlign: 'center',
         minHeight: '450px',
         verticalAlign: 'middle',
-        padding: '15%'
+        padding: '3rem 10rem'
     },
     title: {
         fontFamily: 'Playfair Display',
@@ -30,13 +30,12 @@ function EmptyTable(props) {
 
     return (
         <Paper className={classes.paper} >
-            <img src={props.img} alt='No publications yet'></img>
+            <img src={props.img}></img>
             <Typography variant="h5" component='h4' className={classes.title}>
-                You haven’t added any publications yet
+               {props.text[0]}
             </Typography>
             <Typography variant="body1" className={classes.text}>
-                Add publications and showcase your work to help students and other academics utilize
-                your research. You can add papers, abstracts, book reviews, presentations and more.
+            {props.text[1]}
             </Typography>
             <PrimaryButton text={"New publication"} className={classes.buttonMargin}/>
         </Paper>

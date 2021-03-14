@@ -1,11 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from '@material-ui/core/Grid';
 import PublicationsHeader from "./components/PublicationsHeader";
 import Filters from "./components/Filters";
-import ContentTable from "./components/Table/Table";
-import EmptyTable from "./components/EmptyTable";
 import DisplayGrid from "./components/Grid";
+import PublicationsTable from './components/PublicationsTable';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function createData(publicationName, authors, lastEdit,content,tags) {
+function createData(publicationName, authors, lastEdit, content, tags) {
   return { publicationName, authors, lastEdit, content, tags };
 }
 
@@ -33,23 +31,24 @@ let rows = [
   createData('11A stable algorithm for numerical matrix exponent max max max..', 'You and Shlomo Y..', '22/2/20  |  22:38', "lorem",[]),
   createData('12A stable algorithm for numerical matrix exponent', 'You and Shlomo Y..', '22/2/20  |  22:38',"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis vulputate turpis. Proin lobortis enim enim, blandit rhoncus diam rhoncus non. Morbi non est in arcu ultrices porttitor in a massa. Donec non condimentum risus. Vestibulum sagittis nibh nec risus pulvinar, ut tristique justo convallis.",["published","2016","paper"]),
 ];
+// let rows = [];
 
 
 
-let topics = ["algorithms","snow","music"];
-let types = ["paper","website","movie"];
-let years = [2015,2018,2021];
+let topics = ["algorithms", "snow", "music"];
+let types = ["paper", "website", "movie"];
+let years = [2015, 2018, 2021];
 
 
 
-function PublicationsRoot(){
+function PublicationsRoot() {
   const classes = useStyles();
   const tableHeaders = ['Pubication Name', 'Authors', 'Last Edited', '', ''];
   const [displayList, setDisplayList] = useState(true);
   const [publicationsList, setPublicationsList] = useState(rows); // used to change the data automaticly
 
   /*Remove publication from list  */
-  const removePublication=(publicationId)=>{
+  const removePublication = (publicationId) => {
     console.log("Start remove publication " + publicationId);
     var array = [...publicationsList]; // make a separate copy of the array
     if (publicationId !== -1) {
@@ -60,16 +59,15 @@ function PublicationsRoot(){
   }
 
   return (
-    <div className ={classes.root}>
-    <PublicationsHeader
-    publicationsAmount={publicationsList.length} publicationsBtn={publicationsList.length !== 0 ? true : false}/>
-    <Filters
-      topics={topics}
-      types={types}
-      years={years}
-    displayList={setDisplayList}/>
-    {displayList ? publicationsList.length !== 0 ? <ContentTable rows={publicationsList} headers = {tableHeaders} removeFunc={removePublication} /> : <EmptyTable/> : <DisplayGrid rows={publicationsList}/>}
-
+    <div className={classes.root}>
+      <PublicationsHeader
+        publicationsAmount={publicationsList.length} publicationsBtn={publicationsList.length !== 0 ? true : false} />
+      <Filters
+        topics={topics}
+        types={types}
+        years={years}
+        displayList={setDisplayList} />
+      {displayList ? <PublicationsTable publicationsList={publicationsList} tableHeaders={tableHeaders} removeFunc={removePublication} /> : <DisplayGrid rows={publicationsList} />}
     </div>
   );
 
