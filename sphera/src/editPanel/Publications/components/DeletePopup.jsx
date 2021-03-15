@@ -23,9 +23,9 @@ export default function DeletePopup(props) {
     return(
         <div>
         <CustomDialog
-        isOpen = {props.isDeletePopup}
-        handleClose = {()=>{deleteReject(props.setIsDeletePopup, props.setAnchorEl)}}
-        handleContinue = {()=>{deleteApproved(props.setIsDeletePopup, props.setAnchorEl, props.selectedPublication, props.removeFunc)}}
+        isOpen = {props.isPopup}
+        handleClose = {()=>{deleteReject(props.setIsPopup, props.setAnchorEl)}}
+        handleContinue = {()=>{deleteApproved(props.setIsPopup, props.setAnchorEl, props.selectedItem, props.removeFunc)}}
         title = {"Delete Publications?"}
         subtitle= {"publications will be deleted immediately. You can’t undo this action."}
         closeButtonText = {"Cancel"}

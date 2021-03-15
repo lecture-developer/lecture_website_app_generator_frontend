@@ -142,11 +142,12 @@ function ContentTable(props) {
     const maxItemLength = 80;
 
     // If true - open delete popup
-    const [isDeletePopup, setIsDeletePopup] = React.useState(false);
+    // const [isDeletePopup, setIsDeletePopup] = React.useState(false);
+    const [isPopup, setIsPopup] = React.useState(false);
     
-    const openDeletePopup = () => {
+    const openPopup = () => {
         console.log("Open remove popup");
-        setIsDeletePopup(true);
+        setIsPopup(true);
     }
 
     return (
@@ -191,7 +192,7 @@ function ContentTable(props) {
                                 <StyledMenuItem><UnpublishIcon color={'#828282'} className={classes.icon} />Unpublish</StyledMenuItem>
                                 <StyledMenuItem><VisibilityIcon className={classes.icon} />View on site</StyledMenuItem>
                                 <StyledMenuItem><LinkIcon className={classes.icon} />Get direct link</StyledMenuItem>
-                                <StyledMenuItem onClick={openDeletePopup}><DeleteIcon className={classes.icon} />Delete </StyledMenuItem>
+                                <StyledMenuItem onClick={openPopup}><DeleteIcon className={classes.icon} />Delete </StyledMenuItem>
                             </StyledMenu>
                         </TableRow>
                     )})}
@@ -199,8 +200,10 @@ function ContentTable(props) {
             </Table>
             <div className={classes.fader} />
             {/*If deleteEl*/}
-            {isDeletePopup?
-            <DeletePopup isDeletePopup={isDeletePopup} setIsDeletePopup={setIsDeletePopup} setAnchorEl={setAnchorEl} selectedItem={selectedItem} removeFunc={props.removeFunc} />: <span></span>}
+            {/* {isDeletePopup?
+            <DeletePopup isDeletePopup={isDeletePopup} setIsDeletePopup={setIsDeletePopup} setAnchorEl={setAnchorEl} selectedItem={selectedItem} removeFunc={props.removeFunc} />: <span></span>} */}
+            {isPopup?
+            React.cloneElement(props.popup, {isPopup:isPopup, setIsPopup:setIsPopup, setAnchorEl:setAnchorEl, selectedItem:selectedItem, removeFunc:props.removeFunc}): <span></span>}
         </TableContainer>
     )
 }
