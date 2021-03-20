@@ -1,12 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import {makeStyles} from '@material-ui/core/styles';
 import DropDownFilter from "../../../libraries/DropDownFilter";
-import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
-import FormGroup from '@material-ui/core/FormGroup';
 import Grid from "@material-ui/core/Grid";
 import ViewMode from "./ViewMode";
-import {Divider} from "@material-ui/core";
 
 /***
  * Filters row
@@ -102,7 +99,7 @@ function Filters(props){
                 </Grid>
             </Grid>
             </Grid>
-            <Grid item align-items-flex-end>
+            <Grid item align-items-flex-end="true">
                 <ViewMode
                     displayList={props.displayList}/>
             </Grid>

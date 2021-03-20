@@ -5,13 +5,17 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
-import RadioButtonUnchecked from "@material-ui/icons/RadioButtonUnchecked";
 import AboutMenuItem from "./AboutMenuItem";
 import ResourcesMenuItem from "./ResourcesMenuItem";
 import FooterList from "./Footer/FooterList";
 import Header from "./Header/Header";
 import CoursesIcon from "../../assets/Icons/CoursesIcon";
 import PublicationsIcon from "../../assets/Icons/PublicationsIcon";
+import {
+  Link
+} from "react-router-dom";
+
+
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -28,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   picked: {
     position: "relative",
-    '&:after' : {
+    '&:after': {
       content: "''",
       display: 'block',
       position: 'absolute',
@@ -46,15 +50,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function MenuList() {
+export default function MenuList(props) {
   const classes = useStyles();
   const colorNotClicked = "#828282";
   const colorClicked = "#5A67D8";
 
-  function styleClickedItem(event){
-    const menuItem = event.target.getAttribute('name');
+  function styleClickedItem(event) {
+    // const menuItem = event.target.getAttribute('name');
 
   }
+
 
 
   return (
@@ -65,30 +70,30 @@ export default function MenuList() {
         className={classes.list}
       >
         <Header
-        fullName = "Theodore (Teddy) Lazebnik" />
+          fullName="Theodore (Teddy) Lazebnik" />
         <Divider light />
         <div className={classes.mainMenu}>
-        <AboutMenuItem name="about"/>
-        <ListItem name="publications" className={classes.picked} button onClick={styleClickedItem}>
-          <ListItemIcon>
-            <PublicationsIcon
-              color={colorClicked}/>
-          </ListItemIcon>
-          <ListItemText primary="Publications" />
-        </ListItem>
-        <ResourcesMenuItem name="resources" />
-        <ListItem name="courses" button>
-          <ListItemIcon>
-            <CoursesIcon
-            color={colorNotClicked} />
-          </ListItemIcon>
-          <ListItemText primary="Courses" />
-        </ListItem>
+          <AboutMenuItem name="about" />
+          <ListItem name="publications" className={classes.picked} button onClick={styleClickedItem} component={Link} to={`${props.url}/publications`}>
+            <ListItemIcon>
+              <PublicationsIcon
+                color={colorClicked} />
+            </ListItemIcon>
+            <ListItemText primary="Publications" />
+          </ListItem>
+          <ResourcesMenuItem name="resources" />
+          <ListItem name="courses" component={Link} to={`${props.url}/courses`}  button>
+            <ListItemIcon>
+              <CoursesIcon
+                color={colorNotClicked} />
+            </ListItemIcon>
+            <ListItemText primary="Courses" />
+          </ListItem>
         </div>
       </List>
 
       <Divider light />
       <FooterList />
-      </div>
+    </div>
   );
 }
