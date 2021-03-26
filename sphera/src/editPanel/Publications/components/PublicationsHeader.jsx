@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import PrimaryButton from "../../../libraries/PrimaryButton";
+import NewPublication from '../components/NewPublication/NewPublication';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -48,7 +49,7 @@ return(
       <p>({props.publicationsAmount})</p>
     </Grid>
     {props.publicationsBtn ? <Grid item>
-      <PrimaryButton text = {"New publication"} onClick={(e)=>{console.log(e)}}/>
+      <NewPublication />
     </Grid> : null}
   </Grid>
   </div>
