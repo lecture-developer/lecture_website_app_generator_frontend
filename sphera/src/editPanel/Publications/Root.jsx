@@ -9,9 +9,9 @@ import DisplayGrid from "./components/Grid";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%",
-    padding: "64px",
-    height: "90vh",
+    // width: "100%",
+    // padding: "64px",
+    // height: "90vh",
   }
 }));
 

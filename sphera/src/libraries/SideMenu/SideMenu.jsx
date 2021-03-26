@@ -26,7 +26,7 @@ function SideMenu(props){
     }}
     anchor="left">
     <div className={classes.toolbar} />
-    <MenuList />
+    <MenuList url={props.url} />
   </Drawer>
 );
 }

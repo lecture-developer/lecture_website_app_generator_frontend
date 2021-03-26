@@ -39,7 +39,7 @@ return(
   <div className = {classes.root}>
   <Grid
     container
-    xs="12"
+    xs={12}
     direction="row"
     justify="space-between"
     alignItems="center">

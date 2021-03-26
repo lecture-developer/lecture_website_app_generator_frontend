@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import Select, { components } from 'react-select';
+import Select from 'react-select';
 import {makeStyles} from "@material-ui/styles";
 
 
