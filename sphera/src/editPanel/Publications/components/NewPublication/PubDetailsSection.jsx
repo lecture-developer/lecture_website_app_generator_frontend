@@ -32,7 +32,7 @@ const StyledSelectField = withStyles((theme) => ({
 }))(Select);
 
 // PUBLICATION DETAILS SECTION
-export const PubDetailsSection = (props /* title, type, authors */) => {
+export const PubDetailsSection = (props) => {
     const [title, setTitle] = useState(props.title);
     const [selectedType, setSelectedType] = useState(props.selectedType);
 
@@ -76,7 +76,7 @@ export const PubDetailsSection = (props /* title, type, authors */) => {
             </div>
 
             {/* AUTHORS */}
-            <div className={styles.labelsRow}>{/* Authors */}
+            <div className={styles.labelsRow}>
                 <div className={styles.authorsCell}>Authors</div>
             </div>
         </>

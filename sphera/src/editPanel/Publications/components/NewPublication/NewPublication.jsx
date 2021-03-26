@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import styles from './NewPublication.module.css';
-import {withStyles, makeStyles} from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import HorizontalRule from './HorizoontalRule';
+import { HorizontalRule, InnerHorizontalRule } from './HorizoontalRule';
 import NewPubBtn from './NewPubBtn';
 import PubDetailsSection from './PubDetailsSection';
-import {purple} from "@material-ui/core/colors";
 import { SaveDraftBtn } from './SaveDraftBtn';
 import { PublishBtn } from './PublishBtn';
 
@@ -73,10 +71,22 @@ export const NewPublication = (props) => {
         <HorizontalRule />
         <DialogContent>
           <DialogContentText id="new-publication-dialog-description">
+            {/* PUBLICATION DETAILS */}
             <PubDetailsSection 
               title={title}
               selectedType={selectedType}
             />
+            <InnerHorizontalRule />
+
+            {/* ATTACHMENTS  */}
+            <div className={styles.sectionTitle}>Attachments</div>
+            <div className={styles.labelsRow}>Publication File / Link</div>
+            <InnerHorizontalRule />
+
+            {/* PUBLICATION STATUS */}
+            <div className={styles.sectionTitle}>Publication Status</div>
+            <InnerHorizontalRule />
+
           </DialogContentText>
         </DialogContent>
         <DialogActions>
