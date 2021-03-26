@@ -48,7 +48,7 @@ return(
       <p>({props.publicationsAmount})</p>
     </Grid>
     {props.publicationsBtn ? <Grid item>
-      <PrimaryButton text = {"New publication"} />
+      <PrimaryButton text = {"New publication"} onClick={(e)=>{console.log(e)}}/>
     </Grid> : null}
   </Grid>
   </div>

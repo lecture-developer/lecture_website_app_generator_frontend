@@ -18,10 +18,11 @@ const PrimaryBtn = withStyles((theme) => ({
     }
 }))(Button);
 
+
 function PrimaryButton(props){
 
     return (
-        <PrimaryBtn variant="contained" color="primary">
+        <PrimaryBtn variant="contained" color="primary" onClick={props.onClick}>
             {props.text}
         </PrimaryBtn>
     );
