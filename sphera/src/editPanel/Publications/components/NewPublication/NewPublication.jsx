@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './NewPublication.module.css';
-import {withStyles, makeStyles, MuiThemeProvider, createMuiTheme} from "@material-ui/core/styles";
+import {withStyles, makeStyles} from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -11,6 +11,8 @@ import HorizontalRule from './HorizoontalRule';
 import NewPubBtn from './NewPubBtn';
 import PubDetailsSection from './PubDetailsSection';
 import {purple} from "@material-ui/core/colors";
+import { SaveDraftBtn } from './SaveDraftBtn';
+import { PublishBtn } from './PublishBtn';
 
 
 // CSS PROVIDERS
@@ -29,23 +31,6 @@ const useStyles = makeStyles({
     paddingBottom: '8px',
   },
 });
-const PublishButton = withStyles((theme) => ({
-  root: {
-      color: theme.palette.getContrastText(purple[500]),
-      backgroundColor: "#5A67D8",
-      '&:hover': {
-          backgroundColor: "#7F9CF5",
-      },
-      textTransform: 'capitalize',
-      fontWeight: '300',
-  }
-}))(Button);
-const SaveDraftButton = withStyles((theme) => ({
-  root: {
-      color: '#5A67D8',
-      textTransform: 'capitalize',
-  }
-}))(Button);
 
 // NEW PUBLICATION DIALOG
 export const NewPublication = (props) => {
@@ -95,12 +80,8 @@ export const NewPublication = (props) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <SaveDraftButton onClick={handleClose} color="primary" variant="outlined">
-            Save draft
-          </SaveDraftButton>
-          <PublishButton onClick={handleClose} color="primary" autoFocus variant="outlined">
-            Publish
-          </PublishButton>
+          <SaveDraftBtn onClick={handleClose} />
+          <PublishBtn onClick={handleClose} />
         </DialogActions>
       </Dialog>
       </>
