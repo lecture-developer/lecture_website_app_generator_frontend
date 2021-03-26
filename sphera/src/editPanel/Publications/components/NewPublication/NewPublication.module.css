@@ -27,3 +27,23 @@
     line-height: 19px;
     color: #2D3748;
 }
+.labelsRow {
+    display: flex;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+}
+.fieldsRow {
+    display: flex;
+}
+.pubTitleCell {
+    width: 510px;
+    margin-right: 24px;
+}
+.pubTypeCell {
+
+}

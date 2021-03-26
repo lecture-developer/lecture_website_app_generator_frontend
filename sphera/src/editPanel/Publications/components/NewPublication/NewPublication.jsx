@@ -9,6 +9,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import HorizontalRule from './HorizoontalRule';
 import NewPubBtn from './NewPubBtn';
+import PubDetailsSection from './PubDetailsSection';
+import {purple} from "@material-ui/core/colors";
+
 
 // CSS PROVIDERS
 const useStyles = makeStyles({
@@ -21,12 +24,28 @@ const useStyles = makeStyles({
   },
   label: {
     textTransform: 'capitalize',
-    color: 'red'
   },
   title: {
     paddingBottom: '8px',
   },
 });
+const PublishButton = withStyles((theme) => ({
+  root: {
+      color: theme.palette.getContrastText(purple[500]),
+      backgroundColor: "#5A67D8",
+      '&:hover': {
+          backgroundColor: "#7F9CF5",
+      },
+      textTransform: 'capitalize',
+      fontWeight: '300',
+  }
+}))(Button);
+const SaveDraftButton = withStyles((theme) => ({
+  root: {
+      color: '#5A67D8',
+      textTransform: 'capitalize',
+  }
+}))(Button);
 
 // NEW PUBLICATION DIALOG
 export const NewPublication = (props) => {
@@ -38,6 +57,8 @@ export const NewPublication = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
+  const [title, setTitle] = useState('');
+  const [selectedType, setSelectedType] = useState('');
 
   return (
     <>
@@ -67,16 +88,19 @@ export const NewPublication = (props) => {
         <HorizontalRule />
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-           <div className={styles.sectionTitle}>Publication details</div>
+            <PubDetailsSection 
+              title={title}
+              selectedType={selectedType}
+            />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Disagree
-          </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Agree
-          </Button>
+          <SaveDraftButton onClick={handleClose} color="primary" variant="outlined">
+            Save draft
+          </SaveDraftButton>
+          <PublishButton onClick={handleClose} color="primary" autoFocus variant="outlined">
+            Publish
+          </PublishButton>
         </DialogActions>
       </Dialog>
       </>
