@@ -51,8 +51,8 @@ export const NewPublication = (props) => {
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        aria-labelledby="new-publication-dialog-title"
+        aria-describedby="new-publication-dialog-description"
         fullScreen={true}
         classes={{
           root: classes.root,
@@ -60,7 +60,7 @@ export const NewPublication = (props) => {
         }}
       >
         <DialogTitle 
-          id="alert-dialog-title"
+          id="new-publication-dialog-title"
           classes={{
             root: classes.title,
           }}
@@ -72,7 +72,7 @@ export const NewPublication = (props) => {
         </div>
         <HorizontalRule />
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText id="new-publication-dialog-description">
             <PubDetailsSection 
               title={title}
               selectedType={selectedType}

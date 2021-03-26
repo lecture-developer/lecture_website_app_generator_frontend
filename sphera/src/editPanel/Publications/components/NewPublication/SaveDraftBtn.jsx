@@ -7,6 +7,7 @@ const SaveDraftButton = withStyles((theme) => ({
     root: {
         color: '#5A67D8',
         textTransform: 'capitalize',
+        width: '137px',
     }
   }))(Button);
 

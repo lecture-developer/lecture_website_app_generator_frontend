@@ -39,6 +39,7 @@ export const PubDetailsSection = (props /* title, type, authors */) => {
     return (
         <>
             <div className={styles.sectionTitle}>Publication details</div>
+            {/* PUBLICATION TITLE & TYPE */}
             <div className={styles.labelsRow}>
                 <div className={styles.pubTitleCell}>Publication Title</div>
                 <div className={styles.pubTypeCell}>Publication Type</div>
@@ -72,6 +73,11 @@ export const PubDetailsSection = (props /* title, type, authors */) => {
                         </div>
                     </MuiThemeProvider>
                     </div>
+            </div>
+
+            {/* AUTHORS */}
+            <div className={styles.labelsRow}>{/* Authors */}
+                <div className={styles.authorsCell}>Authors</div>
             </div>
         </>
     );

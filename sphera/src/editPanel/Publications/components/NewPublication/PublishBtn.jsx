@@ -6,6 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 // CSS PROVIDERS
 const PublishButton = withStyles((theme) => ({
     root: {
+        width: '137px',
         color: theme.palette.getContrastText(purple[500]),
         backgroundColor: "#5A67D8",
         '&:hover': {
@@ -23,7 +24,7 @@ export const PublishBtn = (props) => {
             onClick={props.onClick}
             color="primary"
             variant="outlined"
-        >Save Draft
+        >Publish
         </PublishButton>
     );
 }
