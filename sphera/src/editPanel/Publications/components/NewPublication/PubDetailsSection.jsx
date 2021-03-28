@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+// import Authors from './Authors';
+import Author from './Author';
 
 // DATA PROVIDERS
 const types = ['lorem', 'ipsum', 'dolor'];
@@ -35,11 +37,13 @@ const StyledSelectField = withStyles((theme) => ({
 export const PubDetailsSection = (props) => {
     const [title, setTitle] = useState(props.title);
     const [selectedType, setSelectedType] = useState(props.selectedType);
+    const [author, setAuthor] = useState('');
+    const [authorsList, setAuthorsList] = useState([]);
 
     return (
         <>
             <div className={styles.sectionTitle}>Publication details</div>
-            {/* PUBLICATION TITLE & TYPE */}
+            {/* TITLE & TYPE */}
             <div className={styles.labelsRow}>
                 <div className={styles.pubTitleCell}>Publication Title</div>
                 <div className={styles.pubTypeCell}>Publication Type</div>
@@ -78,6 +82,9 @@ export const PubDetailsSection = (props) => {
             {/* AUTHORS */}
             <div className={styles.labelsRow}>
                 <div className={styles.authorsCell}>Authors</div>
+            </div>
+            <div className={styles.inputsRow}>
+                <Author author={author} />
             </div>
         </>
     );

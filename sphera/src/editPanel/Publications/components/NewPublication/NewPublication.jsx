@@ -89,6 +89,8 @@ export const NewPublication = (props) => {
 
           </DialogContentText>
         </DialogContent>
+
+        {/* ACTION BUTTONS */}
         <DialogActions>
           <SaveDraftBtn onClick={handleClose} />
           <PublishBtn onClick={handleClose} />
