@@ -46,6 +46,47 @@ const useStyles = makeStyles(theme => ({
     /* Indigo4 */
     color: "#5A67D8",
   },
+  purpleButton: {
+    /* Auto Layout */
+
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '12px 20px',
+    background: '#5A67D8',
+    /* drop down - shadow */
+    boxBhadow: '0px 4px 3px rgba(26, 32, 44, 0.04), 0px 0px 2px #E2E8F0',
+    borderRadius: '8px',
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "16px",
+    lineHeight: "150%",
+  /* identical to box height, or 24px */
+
+  textAlign: 'center',
+    color: '#FFFFFF',
+  },
+  whiteButton: {
+
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '12px 20px',
+
+    background: '#FFFFFF',
+    border: '2px solid #5A67D8',
+    boxSizing: 'border-box',
+    borderRadius: '8px',
+    fontFamily: 'Roboto',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: '16px',
+    lineHeight: '19px',
+    textAlign: 'center',
+    letterSpacing: '0.025em',
+    color: '#5A67D8',
+  },
 
   closeButton: {
     position: 'absolute',
@@ -98,12 +139,12 @@ const useStyles = makeStyles(theme => ({
             }
         <DialogActions>
           <Button autoFocus onClick={props.handleClose} 
-           className={classes.buttonText}
+           className={classes.whiteButton}
           color="primary">
             {props.closeButtonText}
           </Button>
           <Button onClick={props.handleContinue}
-           className={classes.buttonText}
+           className={classes.purpleButton}
            color="primary" autoFocus>
             {props.continueButtonText}
           </Button>
