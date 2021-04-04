@@ -5,7 +5,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { useTheme } from '@material-ui/core/styles';
 import {makeStyles } from '@material-ui/core/styles';
 
 
@@ -47,22 +46,7 @@ const useStyles = makeStyles(theme => ({
  function CustomDialog(props) {
   const classes = useStyles();
 
-  // const [open, setOpen] = React.useState(false);
-  // const theme = useTheme();
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
-  // const dialogTitle = "You haven't added any links or files";
-  // const dialogContentText = "Are you sure you want to publish without them?";
-  // const closeButtonText = "No, go back";
-  // const continueButtonText = "Yes, Publish";
-  //isOpen, handleClose, title, subtitle,closeButtonText,continueButtonText
   return (
     <div>
       <Dialog
