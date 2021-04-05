@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { withStyles } from '@material-ui/core/styles';
+// import { withStyles } from '@material-ui/core/styles';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -15,18 +15,16 @@ import Tooltip from '@material-ui/core/Tooltip';
 import CreateIcon from '@material-ui/icons/Create';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import LinkIcon from '@material-ui/icons/Link';
-import DeleteIcon from '@material-ui/icons/Delete';
-import UnpublishIcon from '../../../../assets/Icons/UnpublishIcon';
 
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 
 import trim from '../../../../scripts/WordTrimmer';
 
 import './Table.css';
 import DeletePopup from "../DeletePopup.jsx";
+
+import DraftMenu from '../DraftMenu';
+import PublishMenu from '../PublishMenu';
+import Chip from '@material-ui/core/Chip';
 
 
 const useStyles = makeStyles({
@@ -54,6 +52,9 @@ const useStyles = makeStyles({
     mainBlack: {
         color: '#2D3748'
     },
+    mainGrey:{
+        color: '#828282'
+    },
     relative: {
         position: 'relative'
     },
@@ -72,41 +73,16 @@ const useStyles = makeStyles({
     icon: {
         color: '#828282',
         marginRight: '0.5rem'
+    },
+    padding: {
+        paddingLeft:'1rem',
+        paddingRight:'1rem'
     }
     
 });
 
-const StyledMenu = withStyles({
-    paper: {
-        border: '1px solid #d3d4d5',
-        backgroundColor: '#F1F3F5'
-    },
-})((props) => (
-    <Menu
-        elevation={0}
-        getContentAnchorEl={null}
-        anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-        }}
-        transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-        }}
-        {...props}
-    />
-));
 
-const StyledMenuItem = withStyles((theme) => ({
-    root: {
-        '&:focus': {
-            backgroundColor: theme.palette.primary.main,
-            '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-                color: theme.palette.common.white,
-            },
-        },
-    },
-}))(MenuItem);
+
 
 const toolTipStyle = makeStyles((theme) => ({
     arrow: {
@@ -127,15 +103,19 @@ function ContentTable(props) {
     const toolTipClass = toolTipStyle();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
-
+    
     const handleCloseMenu = () => {
         setAnchorEl(null);
+        
     };
 
     const handleClickMenu = (event, clickedRowIndex) => {
         // set current global selected publication for later use if needed
         selectedPublication = clickedRowIndex;
         setAnchorEl(event.currentTarget);
+        //setRowElement(props.rows[selectedPublication]);
+        //setIsClickMenu(true);
+       
     };
     const maxPublicationNameLength = 80;
 
@@ -163,10 +143,11 @@ function ContentTable(props) {
                     {props.rows.map((row, i) => {
                         return (<TableRow key={row.publicationName + i} className={classes.row}> 
                             <Tooltip title={row.publicationName} classes={toolTipClass} arrow placement='bottom'>
-                                <TableCell align="left" className={`${classes.text} ${classes.mainBlack}`}>
+                                <TableCell align="left" className={`${classes.text} ${row.isDraft? classes.mainGrey : classes.mainBlack}`}>
                                     {trim(row.publicationName, maxPublicationNameLength)}
                                 </TableCell>
                             </Tooltip>
+                            <TableCell>{row.isDraft? <Chip className={classes.padding} label="Draft" disabled />:<span></span>}</TableCell>
                             <TableCell align="left" className={classes.text}>{row.authors}</TableCell>
                             <TableCell align="left" className={classes.text}>{row.lastEdit}</TableCell>
                             <TableCell align="left" className={classes.text}>
@@ -180,17 +161,12 @@ function ContentTable(props) {
                                 </IconButton>
                             </TableCell>
                             {/* create a menu for each row */}
-                            <StyledMenu anchorEl={anchorEl}
-                                keepMounted
-                                open={Boolean(anchorEl)}
-                                onClose={handleCloseMenu}
-                                className={classes.text}>
-                                <StyledMenuItem><CreateIcon className={classes.icon} />Edit</StyledMenuItem>
-                                <StyledMenuItem><UnpublishIcon color={'#828282'} className={classes.icon} />Unpublish</StyledMenuItem>
-                                <StyledMenuItem><VisibilityIcon className={classes.icon} />View on site</StyledMenuItem>
-                                <StyledMenuItem><LinkIcon className={classes.icon} />Get direct link</StyledMenuItem>
-                                <StyledMenuItem onClick={openDeletePopup}><DeleteIcon className={classes.icon} />Delete </StyledMenuItem>
-                            </StyledMenu>
+                            <PublishMenu anchorEl={anchorEl} handleCloseMenu ={handleCloseMenu} openDeletePopup ={openDeletePopup}></PublishMenu>
+                            {/*<DraftMenu anchorEl={anchorEl}  handleCloseMenu ={handleCloseMenu}  openDeletePopup ={openDeletePopup}></DraftMenu>*/}
+                            {/* isClickMenu && rowElement ? 
+                            handleIsDraft(row) : null
+                            */}
+                           
                         </TableRow>
                     )})}
                 </TableBody>
